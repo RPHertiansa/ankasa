@@ -53,10 +53,10 @@
   footer {
     font-family: "Poppins", sans-serif;
     font-size: 12px;
-    position: absolute;
+    position: relative;
     bottom: 0;
+    top: 5vh;
     width: 100%;
-    height: 0vh;
   }
 
   footer h5 {
