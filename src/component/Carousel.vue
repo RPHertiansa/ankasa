@@ -1,6 +1,6 @@
 <template>
   <div class="container">
-    <b-card class="text-center card">
+    <b-card class="card">
       <b-card-text>
         <p>Top 10</p>
         <h4>Top 10 Destinations</h4>
@@ -8,8 +8,8 @@
 
       <b-carousel controls indicators background="#ababab">
         <!-- Text slides with image -->
-        <b-carousel-slide img-src="../assets/img/paris.png">
-          <img  class="rounded-circle">
+        <b-carousel-slide>
+          <img src="../assets/img/paris.png" class="rounded-circle img-fluid">
         </b-carousel-slide>
 
       <b-carousel-slide img-src="https://picsum.photos/1024/480/?image=54">
@@ -32,14 +32,16 @@
   </div>
 </template>
 
-<style>
+<style scoped>
   .card {
     background-color:#2395FF;
-    color: black;
+    color: #fff;
     border-radius: 60px;
+    text-align: center;
   }
 
   .card h4 {
     font-weight: bold;
+    margin-bottom: 45px;
   }
 </style>

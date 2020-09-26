@@ -13,7 +13,7 @@
         <div class="row city">
           <div class="col-sm-8">
             <p>Tokyo,</p>
-          <h4>Japan</h4>
+            <h4 h4>Japan</h4>
           </div>
           <div class="col-sm-2 btn-right">
             <img src="../assets/img/btnback.png">
@@ -30,7 +30,7 @@
         <div class="row city">
           <div class="col-sm-8">
             <p>Tokyo,</p>
-          <h4>Japan</h4>
+            <h4>Japan</h4>
           </div>
           <div class="col-sm-2 btn-right">
             <img src="../assets/img/btnback.png">
@@ -48,7 +48,7 @@
 .main {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-  gap: 15px;
+  gap: 25px;
 }
 .card {
   background-image: url(../assets/img/trending1.png);
@@ -58,6 +58,12 @@
   width: 200px;
   border-radius: 20px;
   color: #fff;
+  position: relative;
+}
+.card:hover {
+  box-shadow: 20px -20px rgba(115, 115, 115, 0.65),
+              40px -40px rgba(196, 196, 196, 0.65);
+  margin: 30px 0 0 -20px;
 }
 .top-card {
   background-color: rgba(255, 255, 255, 0.41);
