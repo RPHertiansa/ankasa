@@ -7,7 +7,7 @@
           <b-navbar-toggle target="nav-collapse"></b-navbar-toggle>
           <b-collapse id="nav-collapse" class="nav-responsive" is-nav>
             <b-navbar-nav class="m-auto main-navbar">
-              <b-nav-form>
+              <b-nav-form class="mr-3">
                 <div class="form">
                   <b-form-input
                     size="sm"
