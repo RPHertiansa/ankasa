@@ -13,7 +13,7 @@
                   <b-form-input
                     size="sm"
                     class="mr-sm-2 search-form"
-                    placeholder="Search"
+                    placeholder="Where you want to go ?"
                   ></b-form-input>
                   <button><b-icon icon="search" variant="secondary"></b-icon></button>
                 </div>
@@ -70,7 +70,7 @@ export default {
 }
 .btn-route:hover::after {
   content: "";
-  width: 50px;
+  width: 40px;
   height: 5px;
   background-color: #2395ff;
   position: absolute;
