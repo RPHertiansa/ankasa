@@ -1,8 +1,8 @@
 <template>
   <div class="home">
     <Navbar />
-    <Footer />
     <Jumbotron />
+    <Footer />
   </div>
 </template>
 

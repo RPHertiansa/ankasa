@@ -37,6 +37,7 @@ export default {
 .navbar-all {
   font-family: "Poppins", sans-serif;
   padding-top: 20px;
+  background-color: #fff;
 }
 
 .brand-name {
