@@ -3,6 +3,7 @@
     <div>
       <div class="container navbar-content">
         <b-navbar toggleable="lg" type="light" variant="white">
+          <img src="../assets/img/planeBlue.png" alt="plane-logo" class="mr-2">
           <b-navbar-brand href="#" class="brand-name">Ankasa</b-navbar-brand>
           <b-navbar-toggle target="nav-collapse"></b-navbar-toggle>
           <b-collapse id="nav-collapse" is-nav>
