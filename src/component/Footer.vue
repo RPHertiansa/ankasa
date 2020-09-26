@@ -8,14 +8,16 @@
         </div>
         <div class="col-sm-3 mb-2">
           <h5>Features</h5>
-            <a>Find Ticket</a>
-            <a>My Booking</a>
-            <a>Chat</a>
-            <a>Notification</a>
+            <div class="feature">
+              <p>Find Ticket</p>
+              <p>My Booking</p>
+              <p>Chat</p>
+              <p>Notification</p>
+            </div>
         </div>
         <div class="col-sm-3 mb-2">
-          <h5>Download Angkasa App</h5>
-          <img src="../assets/img/Gplay.png" class="img-download mb-3">
+          <h5>Download Ankasa App</h5>
+          <img src="../assets/img/Gplay.png" class="img-download">
           <img src="../assets/img/Gapp.png" class="img-download">
         </div>
         <div class="col-sm-3 mb-2">
@@ -66,14 +68,14 @@
     width: 30px;
   }
 
-  footer ul li {
-    list-style: none;
-    margin-bottom: 15px;
+  .feature p {
+    display: block;
   }
 
   .img-download {
-    width: 130px;
+    width: 110px;
     display: block;
+    margin-bottom: 10px;
   }
 
   .info img {
@@ -81,15 +83,14 @@
   }
 
   @media (max-width: 768px) {
-    footer .img-download {
-      width: 100px;
+    .img-download {
       display: inline;
+      margin-right: 10px;
     }
   }
 
   @media (max-width: 576px) {
-
-    footer ul li {
+    .feature p {
       display: inline;
       margin-right: 15px;
     }
