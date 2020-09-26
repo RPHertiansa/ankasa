@@ -1,13 +1,12 @@
 <template>
   <div class="navbar-all">
-    <div>
       <div class="container navbar-content">
         <b-navbar toggleable="lg" type="light" variant="white">
           <img src="../assets/img/planeBlue.png" alt="plane-logo" class="mr-2">
           <b-navbar-brand href="#" class="brand-name">Ankasa</b-navbar-brand>
           <b-navbar-toggle target="nav-collapse"></b-navbar-toggle>
-          <b-collapse id="nav-collapse" is-nav>
-            <b-navbar-nav class="m-auto">
+          <b-collapse id="nav-collapse" class="nav-responsive" is-nav>
+            <b-navbar-nav class="m-auto main-navbar">
               <b-nav-form>
                 <div class="form">
                   <b-form-input
@@ -18,18 +17,13 @@
                   <button><b-icon icon="search" variant="secondary"></b-icon></button>
                 </div>
               </b-nav-form>
-              <b-nav-item href="#" class="btn-route ml-3"
-                >Find Ticket</b-nav-item
-              >
-              <b-nav-item href="#" class="btn-route ml-2"
-                >My Booking</b-nav-item
-              >
+              <b-nav-item href="#" class="btn-route ml-2">Find Ticket</b-nav-item>
+              <b-nav-item href="#" class="btn-route ml-2">My Booking</b-nav-item>
             </b-navbar-nav>
             <button class="btn btn-primary btn-signin">Sign Up</button>
           </b-collapse>
         </b-navbar>
       </div>
-    </div>
   </div>
 </template>
 
@@ -42,11 +36,7 @@ export default {
 <style scoped>
 .navbar-all {
   font-family: "Poppins", sans-serif;
-  height: 85px;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  width: 100%;
+  padding-top: 20px;
 }
 
 .brand-name {
@@ -92,5 +82,29 @@ export default {
   outline: none;
   background-color: transparent;
   margin-left: -40px;
+}
+@media screen and (max-width: 992px) {
+  .btn-route {
+    display: block;
+  }
+  .btn-route:hover::after {
+    position: unset;
+    width: 100%;
+    margin-top: -5px;
+  }
+  .main-navbar {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 15px;
+  }
+  .nav-responsive {
+    padding-left: 15px;
+  }
+  .nav-responsive .btn-signin {
+    margin-top: 12px;
+  }
+  .nav-responsive form {
+    margin-top: 15px;
+  }
 }
 </style>
