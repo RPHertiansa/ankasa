@@ -44,7 +44,9 @@ export default {
 }
 .main-jumbotron img:nth-child(3) {
   margin-bottom: 100px;
+  margin-top: -100px;
 }
+
 @media screen and (max-width: 992px) {
   .main-jumbotron {
     grid-template-columns: 1fr;
@@ -62,6 +64,7 @@ export default {
   }
   .main-jumbotron img:nth-child(3) {
     width: 65%;
+    margin-top: 0;
   }
   .egg {
     display: none;
