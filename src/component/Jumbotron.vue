@@ -38,13 +38,16 @@ export default {
 }
 .jumbotron-title h1 {
   font-size: 54px;
+  margin-top: -100px;
 }
 .egg {
   padding-top: 100px;
 }
 .main-jumbotron img:nth-child(3) {
   margin-bottom: 100px;
+  margin-top: -150px;
 }
+
 @media screen and (max-width: 992px) {
   .main-jumbotron {
     grid-template-columns: 1fr;
@@ -54,6 +57,7 @@ export default {
   }
   .jumbotron-title h1 {
     font-size: 40px;
+    margin-top: 0;
   }
   .main-jumbotron img:nth-child(2) {
     position: absolute;
@@ -62,6 +66,7 @@ export default {
   }
   .main-jumbotron img:nth-child(3) {
     width: 65%;
+    margin-top: 0;
   }
   .egg {
     display: none;
