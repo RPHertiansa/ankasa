@@ -19,9 +19,14 @@ export default {
 <style scoped>
 .main-jumbotron {
   display: grid;
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: 3fr 1fr;
 }
 .title-highlight {
   color: #2395FF;
 }
+.main-jumbotron img:nth-child(2),
+.main-jumbotron img:nth-child(3) {
+  height: 370px;
+}
+
 </style>
