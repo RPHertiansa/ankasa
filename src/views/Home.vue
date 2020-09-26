@@ -1,8 +1,9 @@
 <template>
   <div class="home">
     <Navbar />
-    <Footer />
     <Jumbotron />
+    <Carousel />
+    <Footer />
   </div>
 </template>
 
@@ -10,13 +11,15 @@
 import Navbar from '../component/Navbar'
 import Footer from '../component/Footer'
 import Jumbotron from '../component/Jumbotron'
+import Carousel from '../component/Carousel'
 
 export default {
   name: 'Home',
   components: {
     Navbar,
     Footer,
-    Jumbotron
+    Jumbotron,
+    Carousel
   }
 }
 </script>
