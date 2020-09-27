@@ -13,10 +13,10 @@
             <img src="../assets/img/planeBlue.png" alt="logo" /> Ankasa
           </h5>
           <h3 class="mb-5">Login</h3>
-          <form @submit.prevent="" class="text-center">
-            <input type="text" class="form-control mb-4" placeholder="Username" autofocus />
-            <input type="password" class="form-control mb-5" placeholder="Password" />
-            <b-button type="submit" class="btn btn-block" variant="login">Sign In</b-button>
+          <form class="text-center" @submit.prevent="login">
+            <input type="text" class="form-control mb-4" placeholder="Username" autofocus required v-model="form.loginUname" />
+            <input type="password" class="form-control mb-5" placeholder="Password" required v-model="form.loginPass"/>
+            <button type="submit" class="btn btn-block btn-login">Sign In</button>
             <p class="small text-muted mt-3 mb-3">
               Did you forget your password? <br />
               <router-link to="/forgot"> Tap here for reset</router-link>
@@ -38,3 +38,37 @@
 </template>
 
 <style scoped src="../assets/css/style.css"></style>
+
+<script>
+import { mapActions } from 'vuex'
+export default {
+  name: 'Login',
+  data () {
+    return {
+      form: {
+        loginUname: '',
+        loginPass: ''
+      }
+    }
+  },
+  methods: {
+    ...mapActions({
+      onLogin: 'auth/onLogin'
+    }),
+    login () {
+      this.onLogin(this.form).then(result => {
+        if (result === "Cannot read property 'password' of undefined") {
+          alert('Login Failed')
+          localStorage.removeItem('token')
+        } else {
+          window.location = '/home'
+        }
+      }).catch(err => {
+        if (err.message === 'Request failed with status code 401') {
+          alert('This Account need to verified, check your email account')
+        }
+      })
+    }
+  }
+}
+</script>
