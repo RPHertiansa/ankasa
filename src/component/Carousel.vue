@@ -78,22 +78,18 @@
   border-radius: 60px;
   text-align: center;
 }
-
 .card h4 {
   font-weight: bold;
 }
-
+.row {
+  margin: 6%;
+}
 .outline img {
   border: 5px solid blanchedalmond;
   padding: 5px;
   margin: 0 10px 0 30px;
   width: 60%;
 }
-
-.row {
-  margin: 6%;
-}
-
 @media (max-width: 576px) {
   .outline {
     margin: auto;
