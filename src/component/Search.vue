@@ -47,13 +47,13 @@
       <div class="person">
         <p class="text-secondary mt-4">How many person?</p>
         <div class="person-select">
-          <b-form-select v-model="selected" class="mb-3 mr-2">
+          <b-form-select class="mb-3 mr-2">
             <b-form-select-option :value="null" disabled
               >Child</b-form-select-option
             >
             <b-form-select-option value="a">Option A</b-form-select-option>
           </b-form-select>
-          <b-form-select v-model="selected" class="mb-3">
+          <b-form-select class="mb-3">
             <b-form-select-option :value="null" disabled
               >Adult</b-form-select-option
             >
@@ -77,7 +77,7 @@
         </div>
       </div>
       <button class="btn btn-primary mt-4">Search Flight <img src="../assets/img/whitearrow.png" class="ml-5"></button>
-      <button class="btn btn-danger mt-4" @click="$emit('closesearch')">Cancel</button>
+      <button class="btn btn-danger mt-2" @click="$emit('closesearch')">Cancel</button>
     </div>
   </div>
 </template>
@@ -98,7 +98,7 @@ export default {
   font-family: "Poppins", sans-serif;
   font-weight: bold;
   width: 100%;
-  height: 700px;
+  height: 720px;
   background-color: transparent;
   display: flex;
   justify-content: center;

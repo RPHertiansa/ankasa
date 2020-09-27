@@ -100,7 +100,7 @@ export default {
     margin-left: 20px;
   }
   .main-jumbotron img:nth-child(2) {
-    top: 170px;
+    margin-top: 70px;
   }
   .jumbotron-title h1 {
   font-size: 25px;
