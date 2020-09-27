@@ -4,6 +4,7 @@ import Home from '../views/Home.vue'
 import Login from '../views/Login.vue'
 import Register from '../views/Register.vue'
 import Flight from '../views/Flight.vue'
+import User from '../views/User.vue'
 
 Vue.use(VueRouter)
 
@@ -27,6 +28,11 @@ const routes = [
     path: '/flight',
     name: 'Flight',
     component: Flight
+  },
+  {
+    path: '/user',
+    name: 'User',
+    component: User
   }
 ]
 
