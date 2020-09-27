@@ -43,6 +43,7 @@ export default {
 .egg {
   padding-top: 100px;
 }
+
 .main-jumbotron img:nth-child(3) {
   margin-bottom: 100px;
   margin-top: -150px;
