@@ -57,6 +57,7 @@ footer {
   bottom: 0;
   top: 5vh;
   width: 100%;
+  background-color: #fff;
 }
 footer h5 {
   font-size: 15px;

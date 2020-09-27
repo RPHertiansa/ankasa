@@ -5,6 +5,7 @@ import Login from '../views/Login.vue'
 import Register from '../views/Register.vue'
 import Flight from '../views/Flight.vue'
 import User from '../views/User.vue'
+import MyBooking from '../views/MyBooking.vue'
 
 Vue.use(VueRouter)
 
@@ -33,6 +34,11 @@ const routes = [
     path: '/user',
     name: 'User',
     component: User
+  },
+  {
+    path: '/mybooking',
+    name: 'MyBooking',
+    component: MyBooking
   }
 ]
 

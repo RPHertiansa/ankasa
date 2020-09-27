@@ -74,16 +74,19 @@
         </div>
       </div>
     </div>
+    <Footer />
   </div>
 </template>
 
 <script>
 import Navbar from '../component/Navbar'
+import Footer from '../component/Footer'
 
 export default {
   name: 'Flight',
   components: {
-    Navbar
+    Navbar,
+    Footer
   }
 }
 </script>

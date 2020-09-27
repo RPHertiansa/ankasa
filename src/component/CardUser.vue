@@ -36,7 +36,6 @@
 .card-left {
   background-color: #fff;
   border-radius: 15px;
-  position: absolute;
   width: 300px;
   height: 610px;
   margin-bottom: 15px;

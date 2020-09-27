@@ -145,6 +145,9 @@ export default {
     width: 0 !important;
     background-color: transparent !important;
   }
+  .navbar-profile {
+    margin-top: 15px;
+  }
 }
 /** event */
 .button-on::after {
