@@ -3,6 +3,7 @@
     <Navbar @searchtoggle="searchToggle"/>
     <Jumbotron />
     <Search class="search-modal"/>
+    <CardTrending />
     <Carousel />
     <Footer />
   </div>
@@ -12,6 +13,7 @@
 import Navbar from '../component/Navbar'
 import Footer from '../component/Footer'
 import Jumbotron from '../component/Jumbotron'
+import CardTrending from '../component/CardTrending'
 import Carousel from '../component/Carousel'
 import Search from '../component/Search'
 
@@ -22,6 +24,7 @@ export default {
     Footer,
     Jumbotron,
     Carousel,
+    CardTrending,
     Search
   },
   methods: {

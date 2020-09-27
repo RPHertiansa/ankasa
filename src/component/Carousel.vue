@@ -1,51 +1,102 @@
 <template>
   <div class="container">
-    <b-carousel
-      id="carousel-1"
-      :interval="4000"
-      controls
-      indicators
-      background="#ababab"
-      img-width="1024"
-      img-height="480"
-      style="text-shadow: 1px 1px 2px #333;"
-    >
-      <!-- Text slides with image -->
-      <b-carousel-slide
-        caption="First slide"
-        text="Nulla vitae elit libero, a pharetra augue mollis interdum."
-        img-src="https://picsum.photos/1024/480/?image=52"
-      ></b-carousel-slide>
+    <b-card class="card">
+      <b-card-text>
+        <p>Top 10</p>
+        <h4>Top 10 Destinations</h4>
+      </b-card-text>
 
-      <!-- Slides with custom text -->
-      <b-carousel-slide img-src="https://picsum.photos/1024/480/?image=54">
-        <h1>Hello world!</h1>
-      </b-carousel-slide>
+      <b-carousel controls indicators>
+        <b-carousel-slide>
+          <template v-slot:img>
+            <div class="row">
+              <div class="outline">
+                <img src="../assets/img/paris.png" class="rounded-circle" />
+                <p>Paris</p>
+              </div>
+              <div class="outline">
+                <img src="../assets/img/bali.png" class="rounded-circle" />
+                <p>Bali</p>
+              </div>
+              <div class="outline">
+                <img src="../assets/img/singapore.png" class="rounded-circle" />
+                <p>Singapore</p>
+              </div>
+              <div class="outline">
+                <img src="../assets/img/agra.png" class="rounded-circle" />
+                <p>Agra</p>
+              </div>
+              <div class="outline">
+                <img src="../assets/img/sydney.png" class="rounded-circle" />
+                <p>Sydney</p>
+              </div>
+            </div>
+          </template>
+        </b-carousel-slide>
 
-      <!-- Slides with image only -->
-      <b-carousel-slide img-src="https://picsum.photos/1024/480/?image=58"></b-carousel-slide>
-
-      <!-- Slides with img slot -->
-      <!-- Note the classes .d-block and .img-fluid to prevent browser default image alignment -->
-      <b-carousel-slide>
-        <template v-slot:img>
-          <img
-            class="d-block img-fluid w-100"
-            width="1024"
-            height="480"
-            src="https://picsum.photos/1024/480/?image=55"
-            alt="image slot"
-          >
-        </template>
-      </b-carousel-slide>
-
-      <!-- Slide with blank fluid image to maintain slide aspect ratio -->
-      <b-carousel-slide caption="Blank Image" img-blank img-alt="Blank image">
-        <p>
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse eros felis, tincidunt
-          a tincidunt eget, convallis vel est. Ut pellentesque ut lacus vel interdum.
-        </p>
-      </b-carousel-slide>
-    </b-carousel>
+        <b-carousel-slide>
+          <template v-slot:img>
+            <div class="row">
+              <div class="outline">
+                <img src="../assets/img/paris.png" class="rounded-circle" />
+                <p>Paris</p>
+              </div>
+              <div class="outline">
+                <img src="../assets/img/bali.png" class="rounded-circle" />
+                <p>Bali</p>
+              </div>
+              <div class="outline">
+                <img src="../assets/img/singapore.png" class="rounded-circle" />
+                <p>Singapore</p>
+              </div>
+              <div class="outline">
+                <img src="../assets/img/agra.png" class="rounded-circle" />
+                <p>Agra</p>
+              </div>
+              <div class="outline">
+                <img src="../assets/img/sydney.png" class="rounded-circle" />
+                <p>Sydney</p>
+              </div>
+            </div>
+          </template>
+        </b-carousel-slide>
+      </b-carousel>
+    </b-card>
   </div>
 </template>
+
+<style scoped>
+.container {
+  margin: 3% auto;
+}
+.card {
+  background-color: #2395ff;
+  background-image: url(../assets/img/plane.png);
+  background-repeat: no-repeat;
+  background-position: left bottom;
+  color: #fff;
+  border-radius: 60px;
+  text-align: center;
+}
+
+.card h4 {
+  font-weight: bold;
+}
+
+.outline img {
+  border: 5px solid blanchedalmond;
+  padding: 5px;
+  margin: 0 10px 0 30px;
+  width: 60%;
+}
+
+.row {
+  margin: 6%;
+}
+
+@media (max-width: 576px) {
+  .outline {
+    margin: auto;
+  }
+}
+</style>
