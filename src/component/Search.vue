@@ -77,6 +77,7 @@
         </div>
       </div>
       <button class="btn btn-primary mt-4">Search Flight <img src="../assets/img/whitearrow.png" class="ml-5"></button>
+      <button class="btn btn-danger mt-4" @click="$emit('closesearch')">Cancel</button>
     </div>
   </div>
 </template>
@@ -97,10 +98,11 @@ export default {
   font-family: "Poppins", sans-serif;
   font-weight: bold;
   width: 100%;
-  height: 100%;
+  height: 700px;
   background-color: transparent;
   display: flex;
   justify-content: center;
+  z-index: 3;
 }
 .search {
   width: 400px;

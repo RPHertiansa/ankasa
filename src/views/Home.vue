@@ -2,7 +2,7 @@
   <div class="home">
     <Navbar @searchtoggle="searchToggle"/>
     <Jumbotron />
-    <Search class="search-modal"/>
+    <Search class="search-modal" @closesearch="searchToggle"/>
     <CardTrending />
     <Carousel />
     <Footer />
