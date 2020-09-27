@@ -20,7 +20,16 @@
               <b-nav-item class="btn-route ml-2" @click="$emit('searchtoggle')">Find Ticket</b-nav-item>
               <b-nav-item href="#" class="btn-route ml-2">My Booking</b-nav-item>
             </b-navbar-nav>
-            <button class="btn btn-primary btn-signin">Sign Up</button>
+            <div>
+              <div v-if="type === 'flight'" class="navbar-profile">
+                <img src="../assets/img/message.png" alt="message">
+                <img src="../assets/img/bell.png" alt="bell">
+                <div class="user-profile"><img src="../assets/img/profile.png" alt="profile"></div>
+              </div>
+              <div v-else>
+                <button class="btn btn-primary btn-signin">Sign Up</button>
+              </div>
+            </div>
           </b-collapse>
         </b-navbar>
       </div>
@@ -29,7 +38,8 @@
 
 <script>
 export default {
-  name: 'Navbar'
+  name: 'Navbar',
+  props: ['type']
 }
 </script>
 
@@ -83,6 +93,22 @@ export default {
   outline: none;
   background-color: transparent;
   margin-left: -40px;
+}
+.navbar-profile {
+  display: flex;
+  width: 130px;
+  height: 27px;
+  justify-content: space-between;
+}
+
+.user-profile {
+  width: 45px;
+  height: 45px;
+  margin-top: -10px;
+  border: 2px solid #2395ff;
+  border-radius: 25px;
+  overflow: hidden;
+  padding: 3px;
 }
 @media screen and (max-width: 992px) {
   .btn-route {

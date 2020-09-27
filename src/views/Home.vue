@@ -1,6 +1,6 @@
 <template>
   <div class="home">
-    <Navbar @searchtoggle="searchToggle"/>
+    <Navbar @searchtoggle="searchToggle" type="home"/>
     <Jumbotron />
     <Search class="search-modal" @closesearch="searchToggle"/>
     <CardTrending />
