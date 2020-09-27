@@ -25,6 +25,7 @@ export default {
   margin-top: 20px;
   overflow-x: hidden;
   padding: 0;
+  font-family: "Poppins", sans-serif;
 }
 .title-highlight {
   color: #2395FF;

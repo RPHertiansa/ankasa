@@ -1,6 +1,79 @@
 <template>
   <div class="flight">
     <Navbar type="flight"/>
+    <div class="header">
+      <img src="../assets/img/plane.png" alt="blue-plane">
+      <div class="header-content">
+        <div class="subheader-content">
+          <img src="../assets/img/whiteheadeplane.png" alt="whiteplane">
+          <div class="route-way">
+            <div class="route-header">
+              <div class="route-from">
+                <p class="text-white">From</p>
+                <h5 class="text-white font-weight-bold">Medan (IDN)</h5>
+              </div>
+              <img src="../assets/img/whiteswitch.png" alt="switch arrow">
+              <div class="route-from text-right">
+                <p class="text-white">To</p>
+                <h5 class="text-white font-weight-bold">Tokyo (JPN)</h5>
+              </div>
+            </div>
+            <p class="route-explain">Monday, 20 July 20 | 6 Passenger | Economy</p>
+          </div>
+        </div>
+        <p class="font-weight-bold text-white">Change Search</p>
+      </div>
+    </div>
+    <div class="main-content-flight">
+      <div class="filter-menu">
+        <h2 class="mb-4">Filter</h2>
+        <div class="filter-box p-3">
+          <div class="filter-list">
+            <p class="font-weight-bold">Transit</p>
+            <div class="filter-select">
+              <p>Direct</p>
+              <input type="checkbox" name="Direct">
+              <p>Transit</p>
+              <input type="checkbox" name="Transit">
+              <p>Transit 2+</p>
+              <input type="checkbox" name="Transit 2+">
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="flight-list">
+        <h2 class="mb-4">Select Ticket</h2>
+        <div class="flight-box p-3">
+          <div class="plane-brand">
+            <img src="../assets/img/garuda.png" alt="brand">
+            <p class="ml-4 mt-2">Garuda Indonesia</p>
+          </div>
+          <div class="plane-detail">
+            <div class="from-title">
+              <p class="font-weight-bold">IDN</p>
+              <p>12:33</p>
+            </div>
+            <img src="../assets/img/greysmallplane.png" alt="gray-small-plane">
+            <div class="from-title">
+              <p class="font-weight-bold">JPN</p>
+              <p>06:33</p>
+            </div>
+            <div class="flight-time">
+              <p>3 hours 11 minutes</p>
+              <p>(1 transit)</p>
+            </div>
+            <div class="feature-image">
+              <img src="../assets/img/bag.png" alt="bag" class="ml-2">
+              <img src="../assets/img/food.png" alt="food" class="ml-2">
+              <img src="../assets/img/wifi.png" alt="wifi" class="ml-2">
+            </div>
+            <p class="text-primary">$ 214,00 <span class="text-secondary">/pax</span></p>
+            <button class="btn btn-primary button-select">Select</button>
+          </div>
+          <p class="font-weight-bold detail-button">view detail</p>
+        </div>
+      </div>
+    </div>
   </div>
 </template>
 
@@ -14,3 +87,125 @@ export default {
   }
 }
 </script>
+
+<style scoped>
+.flight {
+  font-family: "Poppins", sans-serif;
+  background-color: #F5F6FA;
+}
+.header {
+  width: 100%;
+  background-color: #2395ff;
+  height: 200px;
+  border-radius: 0px 0px 30px 30px;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
+.header img:nth-child(1) {
+  position: absolute;
+  height: 200px;
+  left: 0;
+}
+.header-content {
+  position: absolute;
+  z-index: 2;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 50px;
+}
+.header-content img {
+  height: 34.08px !important;
+  width: 50px;
+  position: unset !important;
+}
+.subheader-content {
+  display: flex;
+  align-items: center;
+}
+.route-header {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  width: 350px;
+}
+.route-header img:nth-child(2) {
+  width: 17px;
+  height: 17px !important;
+}
+.route-from h5 {
+  margin-top: -10px;
+}
+.route-explain {
+  position: absolute;
+  color: rgb(223, 221, 221);
+  margin-left: 20px;
+  margin-top: 10px;
+}
+
+/** main content */
+.main-content-flight {
+  display: grid;
+  grid-template-columns: 3.5fr 10fr;
+  padding: 20px 50px;
+}
+
+.filter-box {
+  background: #FFFFFF;
+  border-radius: 15px;
+  width: 323px;
+  height: 1250px;
+}
+.flight-list {
+  margin-left: 50px;
+}
+.filter-select {
+  display: grid;
+  grid-template-columns: 3fr .3fr;
+  border-bottom: 1px solid rgb(216, 213, 213);
+}
+.flight-box {
+  background: #FFFFFF;
+  border-radius: 15px;
+  width: 100%;
+  height: 240px;
+}
+.plane-brand {
+  display: flex;
+  align-items: center;
+}
+.plane-brand img {
+  width: 87px;
+  height: 50px;
+}
+.plane-detail {
+  margin-top: 25px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.from-title p:nth-child(1) {
+  font-size: 25px;
+}
+.from-title p:nth-child(2) {
+  margin-top: -10px;
+}
+.flight-time {
+  text-align: center;
+}
+.flight-time p:nth-child(2) {
+  margin-top: -10px;
+}
+.feature-image {
+  margin-top: -17px;
+}
+.button-select {
+  margin-top: -17px;
+}
+.detail-button {
+  color: #2395ff;
+  margin-top: 20px;
+}
+</style>

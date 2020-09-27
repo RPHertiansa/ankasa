@@ -17,13 +17,13 @@
                   <button><b-icon icon="search" variant="secondary"></b-icon></button>
                 </div>
               </b-nav-form>
-              <b-nav-item class="btn-route ml-2" @click="$emit('searchtoggle')">Find Ticket</b-nav-item>
+              <b-nav-item class="btn-route ml-2" @click="searchToggle($event)">Find Ticket</b-nav-item>
               <b-nav-item href="#" class="btn-route ml-2">My Booking</b-nav-item>
             </b-navbar-nav>
             <div>
               <div v-if="type === 'flight'" class="navbar-profile">
-                <img src="../assets/img/message.png" alt="message">
-                <img src="../assets/img/bell.png" alt="bell">
+                <img src="../assets/img/message.png" alt="message" class="button-notifmsg">
+                <img src="../assets/img/bell.png" alt="bell" class="button-notifmsg">
                 <div class="user-profile"><img src="../assets/img/profile.png" alt="profile"></div>
               </div>
               <div v-else>
@@ -39,7 +39,13 @@
 <script>
 export default {
   name: 'Navbar',
-  props: ['type']
+  props: ['type'],
+  methods: {
+    searchToggle (event) {
+      this.$emit('searchtoggle')
+      event.target.classList.toggle('button-on')
+    }
+  }
 }
 </script>
 
@@ -48,6 +54,7 @@ export default {
   font-family: "Poppins", sans-serif;
   padding-top: 20px;
   background-color: #fff;
+  padding-bottom: 20px;
 }
 
 .brand-name {
@@ -110,6 +117,7 @@ export default {
   overflow: hidden;
   padding: 3px;
 }
+
 @media screen and (max-width: 992px) {
   .btn-route {
     display: block;
@@ -133,5 +141,23 @@ export default {
   .nav-responsive form {
     margin-top: 15px;
   }
+  .button-on::after {
+    width: 0 !important;
+    background-color: transparent !important;
+  }
+}
+/** event */
+.button-on::after {
+  content: "";
+  width: 40px;
+  height: 5px;
+  background-color: #2395ff;
+  position: absolute;
+  display: block;
+  margin: auto;
+  border-radius: 10px;
+  transition: all 0.4s ease;
+  top: 50px;
+  margin-left: 22px;
 }
 </style>

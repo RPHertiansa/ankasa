@@ -77,7 +77,7 @@
         </div>
       </div>
       <button class="btn btn-primary mt-4">Search Flight <img src="../assets/img/whitearrow.png" class="ml-5"></button>
-      <button class="btn btn-danger mt-2" @click="$emit('closesearch')">Cancel</button>
+      <button class="btn btn-danger mt-2 close-search" @click="$emit('closesearch')">Cancel</button>
     </div>
   </div>
 </template>
@@ -180,5 +180,13 @@ export default {
 
 .class-select p {
   margin-bottom: 2px;
+}
+.close-search {
+  display: none !important;
+}
+@media screen and (max-width: 992px) {
+  .close-search {
+    display: unset !important;
+  }
 }
 </style>

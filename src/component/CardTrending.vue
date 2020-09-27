@@ -64,7 +64,8 @@
 .card:hover {
   box-shadow: 20px -20px rgba(115, 115, 115, 0.65),
               40px -40px rgba(196, 196, 196, 0.65);
-  margin: 30px 0 0 -20px;
+  margin: 30px 0 -30px -20px;
+  transition: all .4s ease;
 }
 .top-card {
   background-color: rgba(255, 255, 255, 0.41);
