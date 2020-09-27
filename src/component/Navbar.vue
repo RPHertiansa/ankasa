@@ -17,7 +17,7 @@
                   <button><b-icon icon="search" variant="secondary"></b-icon></button>
                 </div>
               </b-nav-form>
-              <b-nav-item href="#" class="btn-route ml-2">Find Ticket</b-nav-item>
+              <b-nav-item class="btn-route ml-2" @click="$emit('searchtoggle')">Find Ticket</b-nav-item>
               <b-nav-item href="#" class="btn-route ml-2">My Booking</b-nav-item>
             </b-navbar-nav>
             <button class="btn btn-primary btn-signin">Sign Up</button>

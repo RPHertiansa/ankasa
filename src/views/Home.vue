@@ -1,7 +1,8 @@
 <template>
   <div class="home">
-    <Navbar />
+    <Navbar @searchtoggle="searchToggle"/>
     <Jumbotron />
+    <Search class="search-modal"/>
     <Carousel />
     <Footer />
   </div>
@@ -12,6 +13,7 @@ import Navbar from '../component/Navbar'
 import Footer from '../component/Footer'
 import Jumbotron from '../component/Jumbotron'
 import Carousel from '../component/Carousel'
+import Search from '../component/Search'
 
 export default {
   name: 'Home',
@@ -19,7 +21,30 @@ export default {
     Navbar,
     Footer,
     Jumbotron,
-    Carousel
+    Carousel,
+    Search
+  },
+  methods: {
+    searchToggle () {
+      const searchBox = document.querySelector('.search-modal')
+      searchBox.classList.toggle('search-modal-toggle')
+    }
   }
 }
 </script>
+
+<style scoped>
+.search-modal {
+  position: absolute;
+  top: 50px;
+  display: none;
+  transform: scale(0);
+  transition: all 0.5s ease;
+}
+
+/** event */
+.search-modal-toggle {
+  display: flex;
+  transform: scale(1);
+}
+</style>
