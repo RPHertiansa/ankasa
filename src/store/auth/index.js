@@ -45,7 +45,7 @@ const actions = {
         })
     })
   },
-  logout (context) {
+  onLogout (context) {
     return new Promise((resolve) => {
       localStorage.removeItem('token')
       // localStorage.removeItem('refreshToken')

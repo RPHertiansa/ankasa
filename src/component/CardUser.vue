@@ -23,7 +23,7 @@
               <li class="text-primary"> <b-icon-person-circle class="mr-3"></b-icon-person-circle> Profile</li>
               <li> <b-icon-star-fill class="text-secondary mr-3"></b-icon-star-fill> My Review</li>
               <li> <b-icon-gear-fill class="text-secondary mr-3"></b-icon-gear-fill> Settings</li>
-              <li class="text-danger"> <b-icon-box-arrow-right class="mr-3"></b-icon-box-arrow-right>Logout</li>
+              <li class="text-danger" @click="logout()"> <b-icon-box-arrow-right class="mr-3"></b-icon-box-arrow-right>Logout</li>
             </ul>
           </div>
         </div>
@@ -31,6 +31,22 @@
     </div>
   </div>
 </template>
+
+<script>
+import { mapActions } from 'vuex'
+
+export default {
+  name: 'CardUser',
+  methods: {
+    ...mapActions({
+      onLogout: 'auth/onLogout'
+    }),
+    logout () {
+      this.onLogout().then(() => { window.location = '/' })
+    }
+  }
+}
+</script>
 
 <style scoped>
 .card-left {
@@ -73,6 +89,7 @@ p {
   margin-top: 20px;
   list-style: none;
   font-weight: bold;
+  cursor: pointer;
 }
 @media (max-width: 576px) {
   .card-left {
