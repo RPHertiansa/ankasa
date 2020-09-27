@@ -1,5 +1,5 @@
 <template>
-  <div class="container mb-5">
+  <div class="container">
     <p class="sub">Trending</p>
     <div class="row mb-3">
       <h4 class="col-sm-10">Trending Destinations</h4>
@@ -44,11 +44,12 @@
 <style scoped>
 .container {
   display: grid;
+  margin-bottom: 5%;
 }
 .main {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-  gap: 25px;
+  gap: 10px;
 }
 .card {
   background-image: url(../assets/img/trending1.png);

@@ -6,42 +6,97 @@
         <h4>Top 10 Destinations</h4>
       </b-card-text>
 
-      <b-carousel controls indicators background="#ababab">
-        <!-- Text slides with image -->
+      <b-carousel controls indicators>
         <b-carousel-slide>
-          <img src="../assets/img/paris.png" class="rounded-circle img-fluid">
+          <template v-slot:img>
+            <div class="row">
+              <div class="outline">
+                <img src="../assets/img/paris.png" class="rounded-circle" />
+                <p>Paris</p>
+              </div>
+              <div class="outline">
+                <img src="../assets/img/bali.png" class="rounded-circle" />
+                <p>Bali</p>
+              </div>
+              <div class="outline">
+                <img src="../assets/img/singapore.png" class="rounded-circle" />
+                <p>Singapore</p>
+              </div>
+              <div class="outline">
+                <img src="../assets/img/agra.png" class="rounded-circle" />
+                <p>Agra</p>
+              </div>
+              <div class="outline">
+                <img src="../assets/img/sydney.png" class="rounded-circle" />
+                <p>Sydney</p>
+              </div>
+            </div>
+          </template>
         </b-carousel-slide>
 
-      <b-carousel-slide img-src="https://picsum.photos/1024/480/?image=54">
-        <h1>Hello world!</h1>
-      </b-carousel-slide>
-
-      <b-carousel-slide>
-        <template v-slot:img>
-          <img
-            class="d-block img-fluid w-100"
-            width="1024"
-            height="480"
-            src="https://picsum.photos/1024/480/?image=55"
-            alt="image slot"
-          >
-        </template>
-      </b-carousel-slide>
+        <b-carousel-slide>
+          <template v-slot:img>
+            <div class="row">
+              <div class="outline">
+                <img src="../assets/img/paris.png" class="rounded-circle" />
+                <p>Paris</p>
+              </div>
+              <div class="outline">
+                <img src="../assets/img/bali.png" class="rounded-circle" />
+                <p>Bali</p>
+              </div>
+              <div class="outline">
+                <img src="../assets/img/singapore.png" class="rounded-circle" />
+                <p>Singapore</p>
+              </div>
+              <div class="outline">
+                <img src="../assets/img/agra.png" class="rounded-circle" />
+                <p>Agra</p>
+              </div>
+              <div class="outline">
+                <img src="../assets/img/sydney.png" class="rounded-circle" />
+                <p>Sydney</p>
+              </div>
+            </div>
+          </template>
+        </b-carousel-slide>
       </b-carousel>
     </b-card>
   </div>
 </template>
 
 <style scoped>
-  .card {
-    background-color:#2395FF;
-    color: #fff;
-    border-radius: 60px;
-    text-align: center;
-  }
+.container {
+  margin: 3% auto;
+}
+.card {
+  background-color: #2395ff;
+  background-image: url(../assets/img/plane.png);
+  background-repeat: no-repeat;
+  background-position: left bottom;
+  color: #fff;
+  border-radius: 60px;
+  text-align: center;
+}
 
-  .card h4 {
-    font-weight: bold;
-    margin-bottom: 45px;
+.card h4 {
+  font-weight: bold;
+}
+
+.outline img {
+  border: 5px solid blanchedalmond;
+  padding: 5px;
+  margin: 0 10px 0 30px;
+  width: 60%;
+}
+
+.row {
+  margin: 6%;
+}
+
+@media (max-width: 576px) {
+  .outline {
+    margin: auto;
   }
+}
 </style>
