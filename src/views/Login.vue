@@ -69,17 +69,15 @@ export default {
         if (result === "Cannot read property 'password' of undefined") {
           alert('Login Failed, Username Doesnt Exist!')
           localStorage.removeItem('token')
-        } else if (result.token === undefined || result.token === null) {
-          alert('Username and Password Doesnt Match!')
+          localStorage.removeItem('refreshToken')
+        } else if (result === 'Need Activation') {
+          alert('This Account need to verified, check your email account')
           localStorage.removeItem('token')
+          localStorage.removeItem('refreshToken')
         } else {
           window.location = '/'
         }
-      }).catch(err => {
-        if (err.message === 'Request failed with status code 401') {
-          alert('This Account need to verified, check your email account')
-        }
-      })
+      }).catch(err => alert(err.message))
     }
   }
 }

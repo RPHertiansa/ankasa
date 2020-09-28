@@ -2,7 +2,8 @@ import axios from 'axios'
 
 const state = () => {
   return {
-    token: localStorage.getItem('token') || null
+    token: localStorage.getItem('token') || null,
+    refreshToken: localStorage.getItem('refreshToken') || null
   }
 }
 const getters = {
@@ -36,9 +37,10 @@ const actions = {
           password: payload.loginPass
         })
         .then(result => {
-          resolve(result.data.message)
           localStorage.setItem('token', result.data.data.token)
-          // localStorage.setItem('refreshToken', result.data.data.refreshToken)
+          localStorage.setItem('refreshToken', result.data.data.refreshToken)
+          resolve(result.data.message)
+          console.log(result.data.data.refreshToken)
         })
         .catch(err => {
           reject(err)
@@ -48,7 +50,7 @@ const actions = {
   onLogout (context) {
     return new Promise((resolve) => {
       localStorage.removeItem('token')
-      // localStorage.removeItem('refreshToken')
+      localStorage.removeItem('refreshToken')
       resolve()
     })
   }
