@@ -19,16 +19,20 @@
             <button type="submit" class="btn btn-block btn-login">Sign In</button>
             <p class="small text-muted mt-3 mb-3">
               Did you forget your password? <br />
-              <router-link to="/forgot"> Tap here for reset</router-link>
+              <a v-b-modal.forgot-pass class="text-primary">Tap here for reset</a>
             </p>
+            <ModalForgot />
             <hr />
             <p class="small text-muted">Or Sign in with</p>
             <b-button class="sign" variant="outline-info">
-              <img src="../assets/img/google.png" alt="google" /></b-button>
-            <b-button class="sign" variant="outline-info"><img src="../assets/img/fb.png" alt="facebook" /></b-button>
+              <img src="../assets/img/google.png" alt="google" />
+            </b-button>
+            <b-button class="sign" variant="outline-info">
+              <img src="../assets/img/fb.png" alt="facebook" />
+            </b-button>
             <p class="small text-muted mt-4 mb-5">
-              Don't have an account? please,<router-link to="/register">
-                create a new one!</router-link>
+              Don't have an account? please,
+              <router-link to="/register">create a new one!</router-link>
             </p>
           </form>
         </div>
@@ -41,6 +45,8 @@
 
 <script>
 import { mapActions } from 'vuex'
+import ModalForgot from '../component/ModalForgot'
+
 export default {
   name: 'Login',
   data () {
@@ -50,6 +56,9 @@ export default {
         loginPass: ''
       }
     }
+  },
+  components: {
+    ModalForgot
   },
   methods: {
     ...mapActions({
@@ -64,7 +73,7 @@ export default {
           alert('Username and Password Doesnt Match!')
           localStorage.removeItem('token')
         } else {
-          window.location = '/home'
+          window.location = '/'
         }
       }).catch(err => {
         if (err.message === 'Request failed with status code 401') {

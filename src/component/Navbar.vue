@@ -27,7 +27,7 @@
                 <div class="user-profile"><img src="../assets/img/profile.png" alt="profile"></div>
               </div>
               <div v-else>
-                <button class="btn btn-primary btn-signin">Sign Up</button>
+                <router-link to="/splash"><button class="btn btn-primary btn-signin">Sign Up</button></router-link>
               </div>
             </div>
           </b-collapse>

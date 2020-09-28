@@ -17,3 +17,9 @@ export default {
   }
 }
 </script>
+
+<style scoped>
+.user {
+  background-color: #F5F6FA;
+}
+</style>

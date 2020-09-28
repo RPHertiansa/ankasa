@@ -4,6 +4,7 @@ import Home from '../views/Home.vue'
 import SplashScreen from '../views/SplashScreen.vue'
 import Login from '../views/Login.vue'
 import Register from '../views/Register.vue'
+import ForgotPass from '../views/ForgotPass.vue'
 import Flight from '../views/Flight.vue'
 import User from '../views/User.vue'
 import MyBooking from '../views/MyBooking.vue'
@@ -14,6 +15,12 @@ Vue.use(VueRouter)
 const routes = [
   {
     path: '/',
+    name: 'Home',
+    component: Home
+    // meta: { requiresAuth: true }
+  },
+  {
+    path: '/splash',
     name: 'SplashScreen',
     component: SplashScreen
   },
@@ -28,10 +35,9 @@ const routes = [
     component: Register
   },
   {
-    path: '/home',
-    name: 'Home',
-    component: Home
-    // meta: { requiresAuth: true }
+    path: '/forgot',
+    name: 'ForgotPass',
+    component: ForgotPass
   },
   {
     path: '/flight',
