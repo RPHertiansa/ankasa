@@ -8,6 +8,7 @@ import ForgotPass from '../views/ForgotPass.vue'
 import Flight from '../views/Flight.vue'
 import User from '../views/User.vue'
 import MyBooking from '../views/MyBooking.vue'
+import FlightDetail from '../views/FlightDetail.vue'
 import store from '../store'
 
 Vue.use(VueRouter)
@@ -53,6 +54,11 @@ const routes = [
     path: '/mybooking',
     name: 'MyBooking',
     component: MyBooking
+  },
+  {
+    path: '/flightdetail',
+    name: 'FlightDetail',
+    component: FlightDetail
   }
 ]
 
