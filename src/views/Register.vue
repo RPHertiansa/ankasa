@@ -18,7 +18,7 @@
             <input type="text" class="form-control mb-4" placeholder="Email" autofocus required v-model="registerEmail" />
             <input type="password" class="form-control mb-5" placeholder="Password" required v-model="registerPass" />
             <b-button type="submit" class="btn btn-block" variant="login">Sign Up</b-button>
-            <b-form-checkbox class="mt-3 mb-3"><p class="small">I accept the terms and use</p> </b-form-checkbox>
+            <b-form-checkbox class="mt-4 mb-3"><p class="small">I accept the terms and use</p> </b-form-checkbox>
             <hr />
             <p class="small text-muted text-center">Already have an account?</p>
             <router-link to="/login"><b-button class="btn-block mb-5" variant="outline-info">Sign In</b-button></router-link>

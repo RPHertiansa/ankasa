@@ -1,5 +1,6 @@
 <template>
   <div class="container text-center">
+    <!-- <div class="btn btn-danger" id="mydiv">Dissapear</div> -->
     <img src="../assets/img/illustration.png" alt="plane image" />
     <h3>Get Started</h3>
     <p class="small text-muted mb-4">
@@ -16,6 +17,15 @@
     </router-link>
   </div>
 </template>
+
+<script>
+export default {
+  name: 'SplashScreen',
+  created () {
+    // setTimeout(() => ('#mydiv').fadeOut('fast'), 1000)
+  }
+}
+</script>
 
 <style scoped>
 .container {

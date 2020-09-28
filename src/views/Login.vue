@@ -26,7 +26,7 @@
             <b-button class="sign" variant="outline-info">
               <img src="../assets/img/google.png" alt="google" /></b-button>
             <b-button class="sign" variant="outline-info"><img src="../assets/img/fb.png" alt="facebook" /></b-button>
-            <p class="small text-muted mt-3 mb-5">
+            <p class="small text-muted mt-4 mb-5">
               Don't have an account? please,<router-link to="/register">
                 create a new one!</router-link>
             </p>
@@ -58,7 +58,10 @@ export default {
     login () {
       this.onLogin(this.form).then(result => {
         if (result === "Cannot read property 'password' of undefined") {
-          alert('Login Failed')
+          alert('Login Failed, Username Doesnt Exist!')
+          localStorage.removeItem('token')
+        } else if (result.token === undefined || result.token === null) {
+          alert('Username and Password Doesnt Match!')
           localStorage.removeItem('token')
         } else {
           window.location = '/home'

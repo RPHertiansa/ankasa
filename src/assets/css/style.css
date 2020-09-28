@@ -1,5 +1,6 @@
 .container-fluid {
   background-color: #2395ff;
+  height: 100%;
 }
 .container {
   width: 60%;

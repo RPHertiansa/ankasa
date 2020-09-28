@@ -20,7 +20,10 @@
 
           <div class="menu">
             <ul>
-              <li class="text-primary"> <b-icon-person-circle class="mr-3"></b-icon-person-circle> Profile</li>
+              <li class="text-primary">
+                <router-link to="/mybooking"> <b-icon-person-circle class="mr-3"></b-icon-person-circle> Profile
+                </router-link>
+              </li>
               <li> <b-icon-star-fill class="text-secondary mr-3"></b-icon-star-fill> My Review</li>
               <li> <b-icon-gear-fill class="text-secondary mr-3"></b-icon-gear-fill> Settings</li>
               <li class="text-danger" @click="logout()"> <b-icon-box-arrow-right class="mr-3"></b-icon-box-arrow-right>Logout</li>
