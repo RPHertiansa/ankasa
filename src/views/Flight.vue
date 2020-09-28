@@ -21,37 +21,51 @@
       </div>
       <div class="flight-list">
         <h2 class="mb-4">Select Ticket</h2>
-        <div class="flight-box p-3">
+        <div class="flight-box p-3 mb-4" v-for="(item, index) in dataFlight" :key="index">
           <div class="plane-brand">
-            <img src="../assets/img/garuda.png" alt="brand">
+            <img src="../assets/img/garuda.png" alt="brand" class="garuda">
             <p class="ml-4 mt-2">Garuda Indonesia</p>
           </div>
           <div class="plane-detail">
             <div class="from-title">
-              <p class="font-weight-bold">IDN</p>
-              <p>12:33</p>
+              <p class="font-weight-bold">{{item.fromcountry}}</p>
+              <p>{{item.departuretime}}</p>
             </div>
             <img src="../assets/img/greysmallplane.png" alt="gray-small-plane">
             <div class="from-title">
-              <p class="font-weight-bold">JPN</p>
-              <p>06:33</p>
+              <p class="font-weight-bold">{{item.tocountry}}</p>
+              <p>{{item.timearrived}}</p>
             </div>
             <div class="flight-time">
               <p>3 hours 11 minutes</p>
-              <p>(1 transit)</p>
+              <div>
+                <p v-if="item.direct !== 0">(Direct)</p>
+                <p v-if="item.transit !== 0">(1 transit)</p>
+                <p v-if="item.transit2 !== 0">(2+ transit)</p>
+              </div>
             </div>
             <div class="feature-image">
-              <img src="../assets/img/bag.png" alt="bag" class="ml-2">
-              <img src="../assets/img/food.png" alt="food" class="ml-2">
-              <img src="../assets/img/wifi.png" alt="wifi" class="ml-2">
+              <div v-if="item.luggage !== 0">
+                <img src="../assets/img/bag.png" alt="bag" class="ml-2">
+              </div>
+              <div v-if="item.meal !== 0">
+                <img src="../assets/img/food.png" alt="food" class="ml-2">
+              </div>
+              <div v-if="item.wifi !== 0">
+                <img src="../assets/img/wifi.png" alt="wifi" class="ml-2">
+              </div>
             </div>
-            <p class="text-primary">$ 214,00 <span class="text-secondary">/pax</span></p>
+            <p class="text-primary">$ {{item.price}},00 <span class="text-secondary">/pax</span></p>
             <button class="btn btn-primary button-select">Select</button>
           </div>
-          <p class="font-weight-bold detail-button">view detail</p>
+          <div class="detail-ticket">
+            <p class="font-weight-bold detail-button">view detail</p>
+            <img src="../assets/img/btnback.png" alt="arrow">
+          </div>
         </div>
       </div>
     </div>
+    <button @click="get">click</button>
     <Footer />
   </div>
 </template>
@@ -60,7 +74,7 @@
 import Navbar from '../component/Navbar'
 import Footer from '../component/Footer'
 import Header from '../component/Header'
-import { mapActions } from 'vuex'
+import { mapActions, mapGetters } from 'vuex'
 
 export default {
   name: 'Flight',
@@ -69,13 +83,21 @@ export default {
     Footer,
     Header
   },
-  methods: {
-    ...mapActions({
-      flightData: 'flight/findFlightData'
+  computed: {
+    ...mapGetters({
+      dataFlight: 'flight/getDataFlight'
     })
   },
+  methods: {
+    ...mapActions({
+      getFlightData: 'flight/findFlightData'
+    }),
+    get () {
+      console.log(this.dataFlight)
+    }
+  },
   mounted () {
-    this.flightData()
+    this.getFlightData()
   }
 }
 </script>
@@ -141,6 +163,9 @@ export default {
 }
 .feature-image {
   margin-top: -17px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
 .button-select {
   margin-top: -17px;
@@ -148,5 +173,64 @@ export default {
 .detail-button {
   color: #2395ff;
   margin-top: 20px;
+}
+.detail-ticket {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+@media screen and (max-width: 1200px) {
+  .filter-menu {
+    position: absolute;
+    display: none;
+  }
+  .main-content-flight {
+    grid-template-columns: 1fr;
+  }
+  .filter-menu h2 {
+    display: none;
+  }
+  .flight-list {
+    height: 1250px;
+    margin: 0;
+  }
+}
+@media screen and (max-width: 860px) {
+  .garuda {
+    display: none;
+  }
+  .feature-image {
+    display: none;
+  }
+}
+@media screen and (max-width: 768px) {
+  .flight-time {
+    display: none;
+  }
+}
+@media screen and (max-width: 576px) {
+  .main-content-flight {
+    padding: 20px 0;
+  }
+  .flight {
+    background-color: transparent;
+  }
+  .flight-list h2 {
+    display: none;
+  }
+  .plane-detail {
+    margin-top: 0;
+  }
+  .button-select {
+    display: none;
+  }
+  .detail-button {
+    margin-top: -6px;
+  }
+  .flight-box {
+    border-bottom: 1px solid rgb(172, 170, 170);
+    border-radius: 0;
+    height: 190px;
+  }
 }
 </style>

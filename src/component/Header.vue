@@ -19,7 +19,7 @@
             <p class="route-explain">Monday, 20 July 20 | 6 Passenger | Economy</p>
           </div>
         </div>
-        <p class="font-weight-bold text-white">Change Search</p>
+        <p class="font-weight-bold text-white change-search">Change Search</p>
       </div>
     </div>
 </template>
@@ -81,5 +81,17 @@ export default {
   color: rgb(223, 221, 221);
   margin-left: 20px;
   margin-top: 10px;
+}
+@media screen and (max-width: 768px) {
+  .header-content {
+    flex-direction: column;
+    padding: 0 20px;
+  }
+  .subheader-content img:nth-child(1) {
+    display: none;
+  }
+  .route-explain {
+    position: static;
+  }
 }
 </style>
