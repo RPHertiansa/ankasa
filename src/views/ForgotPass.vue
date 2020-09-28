@@ -1,5 +1,5 @@
 <template>
-  <div class="container-fluid">
+  <div class="container-fluid forgot-pass">
     <div class="row">
       <div class="col-sm-6 d-none d-sm-block">
         <div class="img-left">

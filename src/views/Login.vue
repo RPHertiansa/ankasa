@@ -74,6 +74,10 @@ export default {
           alert('This Account need to verified, check your email account')
           localStorage.removeItem('token')
           localStorage.removeItem('refreshToken')
+        } else if (result === 'Incorrect password! Please try again') {
+          alert('Username and Password Doesnt Match!')
+          localStorage.removeItem('token')
+          localStorage.removeItem('refreshToken')
         } else {
           window.location = '/'
         }
