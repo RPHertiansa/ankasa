@@ -23,8 +23,8 @@
         <h2 class="mb-4">Select Ticket</h2>
         <div class="flight-box p-3 mb-4" v-for="(item, index) in dataFlight" :key="index">
           <div class="plane-brand">
-            <img src="../assets/img/garuda.png" alt="brand" class="garuda">
-            <p class="ml-4 mt-2">Garuda Indonesia</p>
+            <img :src="`http://localhost:3004/${item.imgairlines}`" alt="brand" class="garuda">
+            <p class="ml-4 mt-2">{{item.nameairlines}}</p>
           </div>
           <div class="plane-detail">
             <div class="from-title">
@@ -38,10 +38,10 @@
             </div>
             <div class="flight-time">
               <p>3 hours 11 minutes</p>
-              <div>
+              <div style="position: absolute;">
                 <p v-if="item.direct !== 0">(Direct)</p>
                 <p v-if="item.transit !== 0">(1 transit)</p>
-                <p v-if="item.transit2 !== 0">(2+ transit)</p>
+                <p v-if="item.transit2 !== 0" class="more-transit">(2+ transit)</p>
               </div>
             </div>
             <div class="feature-image">
@@ -123,6 +123,7 @@ export default {
 }
 .flight-list {
   margin-left: 50px;
+  overflow: scroll;
 }
 .filter-select {
   display: grid;
@@ -141,7 +142,7 @@ export default {
 }
 .plane-brand img {
   width: 87px;
-  height: 50px;
+  height: 40px;
 }
 .plane-detail {
   margin-top: 25px;
@@ -178,6 +179,9 @@ export default {
   display: flex;
   justify-content: space-between;
   align-items: center;
+}
+.more-transit {
+  margin-top: -15px;
 }
 @media screen and (max-width: 1200px) {
   .filter-menu {

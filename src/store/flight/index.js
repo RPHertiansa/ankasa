@@ -1,4 +1,5 @@
 import axios from 'axios'
+import { url } from '../../helper/env'
 
 const state = () => {
   return {
@@ -21,11 +22,17 @@ const mutations = {
 const actions = {
   findFlightData: (context, payload) => {
     return new Promise((resolve, reject) => {
-      axios.get('http://127.0.0.1:3004/api/v1/flight/getall').then(result => {
+      axios.get(`${url}/flight/getall`).then(result => {
         context.commit('SET_DATA_FLIGHT', result.data.data)
+        console.log(result)
       }).catch(err => {
         reject(err)
       })
+    })
+  },
+  searchFlightData: (context, payload) => {
+    return new Promise((resolve, reject) => {
+      axios.get()
     })
   }
 }
