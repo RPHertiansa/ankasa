@@ -97,13 +97,16 @@ export default {
       getDataLocation: 'location/getLocation'
     }),
     searchFlight () {
-      console.log(this.selectDate)
-      console.log(this.childTotal)
-      console.log(this.adultTotal)
-      console.log(this.seatClass)
-      console.log(this.flightType)
-      console.log(this.locationfrom)
-      console.log(this.locationto)
+      const search = {
+        departure: this.selectDate,
+        childPassengger: this.childTotal,
+        adultPassengger: this.adultTotal,
+        seatClass: this.seatClass,
+        flightType: this.flightType,
+        locationFrom: this.locationfrom,
+        locationTo: this.locationto
+      }
+      console.log(search)
     },
     setSeatClass (value) {
       this.seatClass = value

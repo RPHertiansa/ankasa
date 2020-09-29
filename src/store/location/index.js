@@ -22,7 +22,6 @@ const actions = {
     return new Promise((resolve, reject) => {
       axios.get('http://127.0.0.1:3004/api/v1/location/getall').then(result => {
         context.commit('SET_LOCATION', result.data.data)
-        console.log(result.data.data)
       }).catch(err => {
         reject(err)
       })
