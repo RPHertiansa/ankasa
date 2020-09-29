@@ -1,37 +1,35 @@
 <template>
   <div class="container mt-3">
-    <div>
-      <b-card class="card-left">
-        <b-card-text class="text-center">
-          <div class="user-profile"><img src="../assets/img/bigProfile.png" alt="profile" class="rounded-circle"></div>
-          <b-button variant="outline-info" class="btn-photo d-none d-sm-block btn-sm">Select Photo</b-button>
-          <h5>Mike Kowalski</h5>
-          <p class="small text-muted">Medan, Indonesia</p>
-        </b-card-text>
-        <div>
-          <p><b>Card</b> <label class="text-info">+ Add</label></p>
-          <b-card class="mini-card">
-            <b>4441 1235 5512 5551</b>
-            <b-row>
-              <b-col align-self="start"><p>X Card</p></b-col>
-              <b-col align-self="end"><p>$ 1,440.2</p></b-col>
-            </b-row>
-          </b-card>
+    <b-card class="card-left">
+      <b-card-text class="text-center">
+        <div class="user-profile"><img src="../assets/img/bigProfile.png" alt="profile" class="rounded-circle"></div>
+        <b-button variant="outline-info" class="btn-photo d-none d-sm-block btn-sm">Select Photo</b-button>
+        <h5>Mike Kowalski</h5>
+        <p class="small text-muted">Medan, Indonesia</p>
+      </b-card-text>
+      <div>
+        <p><b>Card</b> <label class="text-info">+ Add</label></p>
+        <b-card class="mini-card">
+          <b>4441 1235 5512 5551</b>
+          <b-row>
+            <b-col align-self="start"><p>X Card</p></b-col>
+            <b-col align-self="end"><p>$ 1,440.2</p></b-col>
+          </b-row>
+        </b-card>
 
-          <div class="menu">
-            <ul>
-              <li class="text-primary">
-                <router-link to="/mybooking"> <b-icon-person-circle class="mr-3"></b-icon-person-circle> Profile
-                </router-link>
-              </li>
-              <li> <b-icon-star-fill class="text-secondary mr-3"></b-icon-star-fill> My Review</li>
-              <li> <b-icon-gear-fill class="text-secondary mr-3"></b-icon-gear-fill> Settings</li>
-              <li class="text-danger" @click="logout()"> <b-icon-box-arrow-right class="mr-3"></b-icon-box-arrow-right>Logout</li>
-            </ul>
-          </div>
+        <div class="menu">
+          <ul>
+            <li class="text-primary">
+              <router-link to="/mybooking"> <b-icon-person-circle class="mr-3"></b-icon-person-circle> Profile
+              </router-link>
+            </li>
+            <li> <b-icon-star-fill class="text-secondary mr-3"></b-icon-star-fill> My Review</li>
+            <li> <b-icon-gear-fill class="text-secondary mr-3"></b-icon-gear-fill> Settings</li>
+            <li class="text-danger" @click="logout()"> <b-icon-box-arrow-right class="mr-3"></b-icon-box-arrow-right>Logout</li>
+          </ul>
         </div>
-      </b-card>
-    </div>
+      </div>
+    </b-card>
   </div>
 </template>
 

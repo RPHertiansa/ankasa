@@ -101,7 +101,6 @@
   color: #2395ff;
   letter-spacing: 0.3em;
 }
-
 @media (max-width: 576px) {
   .main {
     margin: 0 auto;

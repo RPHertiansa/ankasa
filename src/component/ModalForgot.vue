@@ -1,19 +1,25 @@
 <template>
   <div>
-    <b-modal id="forgot-pass" hide-footer="true" hide-header="true">
-      <h5 class="text-center mb-5">
-        <img src="../assets/img/planeBlue.png" alt="logo" /> Ankasa
-      </h5>
-      <p class="small text-muted text-center mt-3">
-        Forgot your password? Please, enter your email here!
-        <br />
-        You'll get message soon to create a new password
-      </p>
-      <form class="text-center" @submit.prevent="forgotPassword">
-        <input type="text" class="form-control" placeholder="Email" autofocus required v-model="forgotEmail" />
-        <button type="submit" class="btn btn-block btn-login">Send</button>
-      </form>
-    </b-modal>
+    <div class="modal" tabindex="-1" id="forgot-pass">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-body">
+          <h5 class="text-center mb-5">
+            <img src="../assets/img/planeBlue.png" alt="logo" /> Ankasa
+          </h5>
+          <p class="small text-muted text-center mt-3">
+            Forgot your password? Please, enter your email here!
+            <br />
+            You'll get message soon to create a new password
+          </p>
+          <form class="text-center" @submit.prevent="forgotPassword">
+            <input type="text" class="form-control" placeholder="Email" autofocus required v-model="forgotEmail" />
+            <button type="submit" class="btn btn-block btn-login">Send</button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
   </div>
 </template>
 
@@ -24,7 +30,7 @@ export default {
   name: 'ModalForgot',
   data () {
     return {
-      forgotEmail: ''
+      forgotEmail: null
     }
   },
   methods: {
@@ -37,8 +43,8 @@ export default {
       }
       this.onForgotPassword(data).then(result => {
         alert(result)
-        window.location = '/forgot'
-      }).catch(err => alert(err))
+        location.reload()
+      }).catch(err => alert(`Send Email Failed!, ${err.message}`))
     }
   }
 }

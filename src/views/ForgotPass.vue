@@ -13,9 +13,10 @@
             <img src="../assets/img/planeBlue.png" alt="logo" /> Ankasa
           </h5>
           <h3 class="mb-5">Reset Password</h3>
-          <form class="text-center" @submit.prevent="">
-            <input type="password" class="form-control mb-4" placeholder="New Password" autofocus required />
-            <input type="password" class="form-control mb-4" placeholder="Confirm New Password" autofocus required />
+          <form class="text-center" @submit.prevent="resetPassword">
+            <input type="password" id="password" class="form-control mb-4" placeholder="New Password" autofocus required v-model="password" />
+            <input type="password" class="form-control mb-4" placeholder="Confirm New Password" autofocus required id="confirm-password" @keyup="validate" />
+            <!-- <p class="text-danger" id="message"></p> -->
             <button type="submit" class="btn btn-block btn-login">Reset</button>
             <p class="small text-muted mt-3 mb-3">
               Please set a secure password that contains both uppercase and lowercase as well as number and symbols. This is for your own safety
@@ -28,3 +29,40 @@
 </template>
 
 <style scoped src="../assets/css/style.css"></style>
+
+<script>
+import { mapActions } from 'vuex'
+
+export default {
+  name: 'ForgotPass',
+  data () {
+    return {
+      password: null,
+      userkey: null
+    }
+  },
+  methods: {
+    validate () {
+      const password = document.getElementById('password')
+      const confirm = document.getElementById('confirm-password')
+      if (password.value !== confirm.value) {
+        console.log('Password Doesnt Match')
+      } else {
+        console.log('password match')
+      }
+    },
+    ...mapActions({
+      onResetPassword: 'auth/onResetPassword'
+    }),
+    resetPassword () {
+      const ukey = {
+        password: this.password,
+        userkey: this.$route.query.userkey
+      }
+      this.onResetPassword(ukey).then(result => {
+        window.location = '/login'
+      }).catch(err => alert(err))
+    }
+  }
+}
+</script>

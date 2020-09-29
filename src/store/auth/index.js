@@ -39,6 +39,7 @@ const actions = {
         .then(result => {
           localStorage.setItem('token', result.data.data.token)
           localStorage.setItem('refreshToken', result.data.data.refreshToken)
+          console.log(result.data.data)
           resolve(result.data.message)
         })
         .catch(err => {
@@ -61,6 +62,18 @@ const actions = {
           resolve(result.data.message)
         })
         .catch(err => reject(err))
+    })
+  },
+  onResetPassword (context, payload) {
+    return new Promise((resolve, reject) => {
+      axios
+        .post(`${url}/users/newPassword/${payload.userkey}`, {
+          password: payload.password
+        })
+        .then(result => {
+          console.log(result)
+        })
+        .catch(err => reject(err.message))
     })
   }
 }

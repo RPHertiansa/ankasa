@@ -19,7 +19,7 @@
             <button type="submit" class="btn btn-block btn-login">Sign In</button>
             <p class="small text-muted mt-3 mb-3">
               Did you forget your password? <br />
-              <a v-b-modal.forgot-pass class="text-primary">Tap here for reset</a>
+              <button class="text-primary" data-toggle="modal" data-target="#forgot-pass">Tap here for reset</button>
             </p>
             <ModalForgot />
             <hr />
@@ -67,7 +67,7 @@ export default {
     login () {
       this.onLogin(this.form).then(result => {
         if (result === "Cannot read property 'password' of undefined") {
-          alert('Login Failed, Username Doesnt Exist!')
+          alert('Username Doesnt Exist!')
           localStorage.removeItem('token')
           localStorage.removeItem('refreshToken')
         } else if (result === 'Need Activation') {
@@ -79,9 +79,9 @@ export default {
           localStorage.removeItem('token')
           localStorage.removeItem('refreshToken')
         } else {
-          window.location = '/flight'
+          // window.location = '/flight'
         }
-      }).catch(err => alert(err.message))
+      }).catch(err => alert(`Login Failed! ${err.message}`))
     }
   }
 }
