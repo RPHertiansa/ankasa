@@ -48,6 +48,16 @@ input[type="password"]:focus {
   padding: 12px;
   border-radius: 10px;
 }
+.btn-login:hover {
+  color: #fff;
+}
+.btn-sign {
+  background-color: #fff;
+  color: #2395ff;
+  border: 1.5px solid #2395ff;
+  border-radius: 8px;
+  text-decoration: none;
+}
 .sign {
   margin: 5px;
 }

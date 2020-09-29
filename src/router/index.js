@@ -18,7 +18,6 @@ const routes = [
     path: '/',
     name: 'Home',
     component: Home
-    // meta: { requiresAuth: true }
   },
   {
     path: '/splash',
@@ -44,21 +43,25 @@ const routes = [
     path: '/flight',
     name: 'Flight',
     component: Flight
+    // meta: { requiresAuth: true }
   },
   {
     path: '/user',
     name: 'User',
     component: User
+    // meta: { requiresAuth: true }
   },
   {
     path: '/mybooking',
     name: 'MyBooking',
     component: MyBooking
+    // meta: { requiresAuth: true }
   },
   {
     path: '/flightdetail',
     name: 'FlightDetail',
     component: FlightDetail
+    // meta: { requiresAuth: true }
   }
 ]
 
