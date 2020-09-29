@@ -10,23 +10,23 @@
       <div class="search-route">
         <div class="route-box">
           <p class="text-secondary">From</p>
-          <p class="route">Medan</p>
-          <p class="text-secondary">Indonesia</p>
+          <p class="route"><button type="button" class="btn font-weight-bold" data-toggle="modal" data-target="#from">{{locationfrom.city}}</button>
+          <p class="text-secondary">{{locationfrom.country}}</p>
         </div>
         <img src="../assets/img/switch.png" alt="switch-route" />
         <div class="route-box">
           <p class="text-secondary">To</p>
-          <p class="route">Tokyo</p>
-          <p class="text-secondary">Japan</p>
+          <p class="route"><button type="button" class="btn font-weight-bold" data-toggle="modal" data-target="#to">{{locationto.city}}</button></p>
+          <p class="text-secondary">{{locationto.country}}</p>
         </div>
       </div>
       <div class="button-typetrip">
-        <button class="btn btn-light one-way" @click="onewayButton" :style="oneWay">
+        <button class="btn btn-light one-way" @click="onewayButton('oneway')" :style="oneWay">
           <img
             src="../assets/img/planeWhite.png"
             alt="oneway-logo"
             class="mr-2" />One Way</button>
-        <button class="btn btn-light" @click="roundtripButton" :style="roundtrip">
+        <button class="btn btn-light" @click="roundtripButton('round trip')" :style="roundtrip">
           <img src="../assets/img/loop.png" alt="loop" class="mr-2" /> Round Trip</button>
       </div>
       <div class="depature mt-4 text-secondary">
@@ -76,8 +76,11 @@
 </template>
 
 <script>
+import { mapActions } from 'vuex'
+
 export default {
   name: 'Search',
+  props: ['locationfrom', 'locationto'],
   data () {
     return {
       selectDate: null,
@@ -90,31 +93,42 @@ export default {
     }
   },
   methods: {
+    ...mapActions({
+      getDataLocation: 'location/getLocation'
+    }),
     searchFlight () {
       console.log(this.selectDate)
       console.log(this.childTotal)
       console.log(this.adultTotal)
       console.log(this.seatClass)
+      console.log(this.flightType)
+      console.log(this.locationfrom)
+      console.log(this.locationto)
     },
     setSeatClass (value) {
       this.seatClass = value
     },
-    onewayButton () {
+    onewayButton (value) {
       if (this.roundtrip === 'background-color: #f0f0f0;') {
         this.oneWay = 'background-color: #2395ff; color: white;'
       } else {
         this.roundtrip = 'background-color: #f0f0f0;'
         this.oneWay = 'background-color: #2395ff; color: white;'
       }
+      this.flightType = value
     },
-    roundtripButton () {
+    roundtripButton (value) {
       if (this.oneWay === 'background-color: #f0f0f0;') {
         this.roundtrip = 'background-color: #2395ff; color: white;'
       } else {
         this.oneWay = 'background-color: #f0f0f0;'
         this.roundtrip = 'background-color: #2395ff; color: white;'
       }
+      this.flightType = value
     }
+  },
+  mounted () {
+    this.getDataLocation()
   }
 }
 </script>
@@ -166,7 +180,7 @@ export default {
   align-items: center;
 }
 .route-box {
-  height: 100%;
+  height: 110px;
   padding: 6px 15px;
 }
 .search-route p:nth-child(1),
@@ -180,9 +194,21 @@ export default {
   height: 30px;
 }
 
-.route {
+.route button {
   font-size: 23px !important;
-  margin-bottom: -2px;
+  margin-bottom: -15px;
+  padding: 0;
+  border: none;
+  background-color: transparent;
+  color: rgb(63, 63, 63);
+  padding: 0 5px;
+}
+.route button:hover {
+  color: #2395ff;
+}
+.route button:active {
+  background-color: transparent !important;
+  color: #2395ff !important;
 }
 .route-box:nth-child(3) {
   text-align: right;
