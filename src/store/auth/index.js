@@ -1,4 +1,5 @@
 import axios from 'axios'
+import { url } from '../../helper/env'
 
 const state = () => {
   return {
@@ -15,12 +16,11 @@ const getters = {
     }
   }
 }
-
 const actions = {
   onRegister (context, payload) {
     return new Promise((resolve, reject) => {
       axios
-        .post('http://localhost:3000/api/v1/users/register', payload)
+        .post(`${url}/users/register`, payload)
         .then(result => {
           resolve(result.data.message)
         })
@@ -32,7 +32,7 @@ const actions = {
   onLogin (context, payload) {
     return new Promise((resolve, reject) => {
       axios
-        .post('http://localhost:3000/api/v1/users/login', {
+        .post(`${url}/users/login`, {
           username: payload.loginUname,
           password: payload.loginPass
         })
@@ -40,7 +40,6 @@ const actions = {
           localStorage.setItem('token', result.data.data.token)
           localStorage.setItem('refreshToken', result.data.data.refreshToken)
           resolve(result.data.message)
-          console.log(result.data.data.refreshToken)
         })
         .catch(err => {
           reject(err)
@@ -48,10 +47,20 @@ const actions = {
     })
   },
   onLogout (context) {
-    return new Promise((resolve) => {
+    return new Promise(resolve => {
       localStorage.removeItem('token')
       localStorage.removeItem('refreshToken')
       resolve()
+    })
+  },
+  onForgotPassword (context, payload) {
+    return new Promise((resolve, reject) => {
+      axios
+        .post(`${url}/users/ForgotPassword`, payload)
+        .then(result => {
+          resolve(result.data.message)
+        })
+        .catch(err => reject(err))
     })
   }
 }

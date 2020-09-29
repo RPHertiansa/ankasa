@@ -79,7 +79,7 @@ export default {
           localStorage.removeItem('token')
           localStorage.removeItem('refreshToken')
         } else {
-          window.location = '/'
+          window.location = '/flight'
         }
       }).catch(err => alert(err.message))
     }

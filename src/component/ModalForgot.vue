@@ -9,14 +9,41 @@
         <br />
         You'll get message soon to create a new password
       </p>
-      <form class="text-center" @submit.prevent="">
-        <input type="text" class="form-control" placeholder="Email" autofocus />
+      <form class="text-center" @submit.prevent="forgotPassword">
+        <input type="text" class="form-control" placeholder="Email" autofocus required v-model="forgotEmail" />
         <button type="submit" class="btn btn-block btn-login">Send</button>
       </form>
     </b-modal>
   </div>
 </template>
 
+<script>
+import { mapActions } from 'vuex'
+
+export default {
+  name: 'ModalForgot',
+  data () {
+    return {
+      forgotEmail: ''
+    }
+  },
+  methods: {
+    ...mapActions({
+      onForgotPassword: 'auth/onForgotPassword'
+    }),
+    forgotPassword () {
+      const data = {
+        email: this.forgotEmail
+      }
+      this.onForgotPassword(data).then(result => {
+        alert(result)
+        window.location = '/forgot'
+      }).catch(err => alert(err))
+    }
+  }
+}
+
+</script>
 <style scoped>
 h5 img {
   width: 5%;

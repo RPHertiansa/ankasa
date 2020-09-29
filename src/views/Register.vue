@@ -16,12 +16,14 @@
           <form @submit.prevent="register">
             <input type="text" class="form-control mb-4" placeholder="Fullname" autofocus required v-model="registerName" />
             <input type="text" class="form-control mb-4" placeholder="Email" autofocus required v-model="registerEmail" />
-            <input type="password" class="form-control mb-5" placeholder="Password" required v-model="registerPass" />
+            <input type="password" class="form-control mb-4" placeholder="Password" required v-model="registerPass" />
             <b-button type="submit" class="btn btn-block" variant="login">Sign Up</b-button>
             <b-form-checkbox class="mt-4 mb-3"><p class="small">I accept the terms and use</p> </b-form-checkbox>
             <hr />
             <p class="small text-muted text-center">Already have an account?</p>
-            <router-link to="/login"><b-button class="btn-block mb-5" variant="outline-info">Sign In</b-button></router-link>
+            <router-link to="/login">
+              <a class="btn-sign btn-block p-2 text-center" >Sign In</a>
+            </router-link>
           </form>
         </div>
       </div>
