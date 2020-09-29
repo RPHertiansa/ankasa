@@ -79,7 +79,7 @@ export default {
           localStorage.removeItem('token')
           localStorage.removeItem('refreshToken')
         } else {
-          // window.location = '/flight'
+          window.location = '/'
         }
       }).catch(err => alert(`Login Failed! ${err.message}`))
     }
