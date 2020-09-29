@@ -19,7 +19,7 @@
             <button type="submit" class="btn btn-block btn-login">Sign In</button>
             <p class="small text-muted mt-3 mb-3">
               Did you forget your password? <br />
-              <button class="text-primary" data-toggle="modal" data-target="#forgot-pass">Tap here for reset</button>
+              <a class="text-primary" data-toggle="modal" data-target="#forgot-pass">Tap here for reset</a>
             </p>
             <ModalForgot />
             <hr />

@@ -25,7 +25,7 @@ const actions = {
           resolve(result.data.message)
         })
         .catch(err => {
-          reject(err)
+          reject(err.message)
         })
     })
   },
@@ -39,11 +39,10 @@ const actions = {
         .then(result => {
           localStorage.setItem('token', result.data.data.token)
           localStorage.setItem('refreshToken', result.data.data.refreshToken)
-          console.log(result.data.data)
           resolve(result.data.message)
         })
         .catch(err => {
-          reject(err)
+          reject(err.message)
         })
     })
   },
@@ -61,7 +60,7 @@ const actions = {
         .then(result => {
           resolve(result.data.message)
         })
-        .catch(err => reject(err))
+        .catch(err => reject(err.message))
     })
   },
   onResetPassword (context, payload) {
@@ -71,7 +70,7 @@ const actions = {
           password: payload.password
         })
         .then(result => {
-          console.log(result)
+          resolve(result)
         })
         .catch(err => reject(err.message))
     })
