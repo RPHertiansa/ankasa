@@ -27,6 +27,13 @@ const actions = {
       }).catch((err) => reject(err))
     })
   }
+
+  // update data user
+  // update (context, payload) {
+  //   return new Promise((resolve, reject) => {
+  //     axios.patch(`${url}/users/update`)
+  //   })
+  // }
 }
 
 export default {

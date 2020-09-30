@@ -182,7 +182,7 @@ export default {
     }
   },
   mounted () {
-    // this.getFlightData()
+    this.getFlightData()
   }
 }
 </script>

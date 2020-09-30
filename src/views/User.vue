@@ -23,13 +23,14 @@
                   <label class="text-muted">Username</label>
                   <input type="text" class="form-control mb-4" v-model="detailUser.username"/>
                   <label class="text-muted">City</label>
-                  <select class="form-control mb-4" v-model="detailUser.city">
-                    <option></option>
-                  </select>
+                  <b-form-select v-model="detailUser.city">
+                    <b-form-select-option disabled value="null">Select Category</b-form-select-option>
+                    <b-form-select-option v-for="(item, index) in allLocation" :key="index" :value="item.city"> {{ item.city }} </b-form-select-option>
+                  </b-form-select>
                   <label class="text-muted">Address</label>
                   <input type="text" class="form-control mb-4" v-model="detailUser.address"/>
                   <label class="text-muted">Post Code</label>
-                  <input type="text" class="form-control mb-4" v-model="detailUser.postcode"/>
+                  <input type="text" class="form-control mb-4" v-model="detailUser.postcode" disabled/>
                   <button type="submit" class="btn btn-save">Save</button>
                 </div>
               </div>
@@ -128,7 +129,7 @@ input[type="password"]:focus, select:focus {
     background-color: #fff;
   }
   .profile {
-    width: 500px;
+    width: 450px;
     height: 100%;
     margin-bottom: 15px;
   }
