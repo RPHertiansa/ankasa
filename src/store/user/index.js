@@ -31,7 +31,22 @@ const actions = {
   // update data user
   onUpdate (context, payload) {
     return new Promise((resolve, reject) => {
-      axios.patch(`${url}/users/update/${payload.id}`, payload.form).then((response) => {
+      axios.patch(`${url}/users/update/${payload.id}`, {
+        email: payload.email,
+        username: payload.username,
+        phonenumber: payload.phonenumber,
+        address: payload.address,
+        idlocation: payload.idlocation
+      }).then((response) => {
+        resolve(response)
+      }).catch((err) => reject(err))
+    })
+  },
+  updateImage (context, payload) {
+    return new Promise((resolve, reject) => {
+      const fd = new FormData()
+      fd.append('image', payload.image)
+      axios.patch(`${url}/users/update/${payload.id}`, fd).then((response) => {
         resolve(response)
       }).catch((err) => reject(err))
     })

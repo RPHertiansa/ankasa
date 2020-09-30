@@ -6,9 +6,10 @@ import Login from '../views/Login.vue'
 import Register from '../views/Register.vue'
 import ForgotPass from '../views/ForgotPass.vue'
 import Flight from '../views/Flight.vue'
+import FlightDetail from '../views/FlightDetail.vue'
 import User from '../views/User.vue'
 import MyBooking from '../views/MyBooking.vue'
-import FlightDetail from '../views/FlightDetail.vue'
+import BookingDetail from '../views/BookingDetail.vue'
 import store from '../store'
 
 Vue.use(VueRouter)
@@ -46,6 +47,12 @@ const routes = [
     meta: { requiresAuth: true }
   },
   {
+    path: '/flightdetail',
+    name: 'FlightDetail',
+    component: FlightDetail
+    // meta: { requiresAuth: true }
+  },
+  {
     path: '/user',
     name: 'User',
     component: User
@@ -58,9 +65,9 @@ const routes = [
     // meta: { requiresAuth: true }
   },
   {
-    path: '/flightdetail',
-    name: 'FlightDetail',
-    component: FlightDetail
+    path: '/bookingdetail',
+    name: 'BookingDetail',
+    component: BookingDetail
     // meta: { requiresAuth: true }
   }
 ]

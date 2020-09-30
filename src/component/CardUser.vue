@@ -1,15 +1,17 @@
 <template>
   <div class="card-main mt-3">
     <div class="sub-card m-4">
-      <form @click.prevent="update">
+      <form enctype="multipart/form-data" @change.prevent="update">
         <div class="text-center">
         <div class="user-profile"><img :src="`http://localhost:3004/${detailUser.image}`" alt="profile" class="rounded-circle mt-4"></div>
-        <b-button type="submit" variant="outline-info" class="btn-photo d-none d-sm-block btn-sm">Select Photo</b-button>
+        <label class="custom-file-upload">
+          <input type="file" @change="upload($event)"/>
+          Select Photo
+        </label>
         <h5>{{ detailUser.fullname }}</h5>
         <p class="small text-muted">{{ detailUser.address }}</p>
       </div>
       </form>
-      <input type="file" class="btn btn-outline-info" value="Select Photo" @change="processFile($event)">
         <b-row>
             <b-col><b>Card</b></b-col>
             <b-col><p class="text-info text-right">+ Add</p></b-col>
@@ -38,6 +40,7 @@
 </template>
 
 <script>
+import Swal from 'sweetalert2'
 import { mapGetters, mapActions } from 'vuex'
 
 export default {
@@ -55,29 +58,58 @@ export default {
   methods: {
     ...mapActions({
       onDetail: 'user/onDetail',
-      onUpdate: 'user/onUpdate',
+      onUpdate: 'user/updateImage',
       onLogout: 'auth/onLogout'
     }),
-    processFile (event) {
-      this.image = event.target.file[0]
+    upload (event) {
+      this.image = event.target.files[0]
     },
     update () {
-      const fd = new FormData()
-      fd.append('image', this.image)
       const data = {
         id: this.id,
-        form: fd
+        image: this.image
       }
 
       this.onUpdate(data).then((response) => {
-        console.log(response)
-        alert('data berhasil di update')
-      }).catch((err) => {
-        console.log(err)
-      })
+        if (response.data.message === 'Image size is too big! Please upload another one with size <5mb') {
+          this.alertSize()
+        } else if (response.data.message === 'Image type must be JPG or JPEG') {
+          this.alertValidation()
+        } else {
+          this.alertSuccess()
+          window.location = '/user'
+        }
+      }).catch((err) => this.alertError(err))
     },
     logout () {
       this.onLogout().then(() => { window.location = '/' })
+    },
+    alertSuccess () {
+      Swal.fire({
+        icon: 'success',
+        title: 'Image Updated'
+      })
+    },
+    alertSize () {
+      Swal.fire({
+        icon: 'error',
+        title: 'Image size is too big!',
+        text: 'Please upload another one with size < 5mb'
+      })
+    },
+    alertValidation () {
+      Swal.fire({
+        icon: 'error',
+        title: 'Oops...',
+        text: 'Image type must be JPG or JPEG'
+      })
+    },
+    alertError () {
+      Swal.fire({
+        icon: 'error',
+        title: 'Oops...',
+        text: 'Something went wrong!'
+      })
     }
   },
   mounted () {
@@ -87,6 +119,19 @@ export default {
 </script>
 
 <style scoped>
+input[type="file"] {
+  display: none;
+  border-radius: 10px;
+  font-weight: bold;
+  padding: 8px;
+  margin: 20px auto;
+}
+.custom-file-upload {
+    border: 1px solid #ccc;
+    display: inline-block;
+    padding: 6px 12px;
+    cursor: pointer;
+}
 .card-main {
   background-color: #fff;
   border-radius: 15px;
@@ -95,10 +140,11 @@ export default {
   margin: auto;
 }
 .user-profile img{
-  width: 40%;
-  height: 80%;
+  width: 100px;
+  height: 90px;
   border: 3px solid #2395FF;
   padding: 5px;
+  margin-bottom: 15px;
 }
 .btn-photo {
   border-radius: 10px;

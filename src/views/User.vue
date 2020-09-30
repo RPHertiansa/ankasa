@@ -8,7 +8,7 @@
           <div class="profile mt-3 p-4">
             <p class="sub">PROFILE</p>
             <h3>Profile</h3>
-            <form @click.prevent="update">
+            <form @submit.prevent="update">
               <div class="row mt-4">
                 <div class="col-sm-6">
                   <p>Contact</p>
@@ -23,7 +23,7 @@
                   <label class="text-muted">Username</label>
                   <input type="text" class="form-control mb-4" v-model="detailUser.username"/>
                   <label class="text-muted">City</label>
-                  <b-form-select v-model="detailUser.city">
+                  <b-form-select v-model="detailUser.idlocation">
                     <b-form-select-option disabled value="null">Select Category</b-form-select-option>
                     <b-form-select-option v-for="(item, index) in allLocation" :key="index" :value="item.idlocation"> {{ item.city }} </b-form-select-option>
                   </b-form-select>
@@ -73,19 +73,18 @@ export default {
       updateLocation: 'location/updateLocation'
     }),
     update () {
-      const fd = new FormData()
-      fd.append('email', this.detailUser.email)
-      fd.append('username', this.detailUser.username)
-      fd.append('phonenumber', this.detailUser.phonenumber)
-      fd.append('address', this.detailUser.address)
-      fd.append('idlocation', this.detailUser.city)
       const data = {
         id: this.id,
-        form: fd
+        email: this.detailUser.email,
+        username: this.detailUser.username,
+        phonenumber: this.detailUser.phonenumber,
+        address: this.detailUser.address,
+        idlocation: this.detailUser.idlocation
       }
 
       this.onUpdate(data).then((response) => {
         console.log(response)
+        window.location = '/user'
       }).catch((err) => {
         console.log(err)
       })
