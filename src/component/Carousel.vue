@@ -9,13 +9,13 @@
       <b-carousel controls indicators>
         <b-carousel-slide>
           <template v-slot:img>
-            <div class="row">
+            <!-- <div class="row">
               <div class="outline">
                 <b-img :src="`http://localhost:3004/${getLocation.data.imglocation}`" class="rounded-circle" />
                 <p>{{ getLocation.data.city }}</p>
                 <p></p>
               </div>
-            </div>
+            </div> -->
           </template>
         </b-carousel-slide>
 
@@ -92,7 +92,7 @@ export default {
     })
   },
   mounted () {
-    this.getAll()
+    // this.getAll()
   }
 }
 

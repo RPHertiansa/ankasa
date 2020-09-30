@@ -35,6 +35,7 @@
 <script>
 export default {
   name: 'Header',
+  props: ['type'],
   data () {
     return {
       searchdata: JSON.parse(localStorage.getItem('searchdata'))

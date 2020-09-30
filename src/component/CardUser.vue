@@ -2,10 +2,10 @@
   <div class="card-main mt-3">
     <div class="sub-card m-4">
       <div class="text-center">
-        <div class="user-profile"><img src="../assets/img/bigProfile.png" alt="profile" class="rounded-circle mt-4"></div>
+        <div class="user-profile"><img :src="`http://localhost:3004/${detailUser.image}`" alt="profile" class="rounded-circle mt-4"></div>
         <b-button variant="outline-info" class="btn-photo d-none d-sm-block btn-sm">Select Photo</b-button>
-        <h5>Mike Kowalski</h5>
-        <p class="small text-muted">Medan, Indonesia</p>
+        <h5>{{ detailUser.fullname }}</h5>
+        <p class="small text-muted">{{ detailUser.address }}</p>
       </div>
         <b-row>
             <b-col><b>Card</b></b-col>
@@ -35,17 +35,31 @@
 </template>
 
 <script>
-import { mapActions } from 'vuex'
+import { mapGetters, mapActions } from 'vuex'
 
 export default {
   name: 'CardUser',
+  data () {
+    return {
+      id: localStorage.getItem('iduser')
+    }
+  },
+  computed: {
+    ...mapGetters({
+      detailUser: 'user/getDetail'
+    })
+  },
   methods: {
     ...mapActions({
+      getDetail: 'user/getDetail',
       onLogout: 'auth/onLogout'
     }),
     logout () {
       this.onLogout().then(() => { window.location = '/' })
     }
+  },
+  mounted () {
+    this.getDetail(this.id)
   }
 }
 </script>
@@ -61,7 +75,7 @@ export default {
 .user-profile img{
   width: 30%;
   height: 30%;
-  border: 4px solid #2395FF;
+  border: 3px solid #2395FF;
   padding: 5px;
 }
 .btn-photo {

@@ -13,23 +13,23 @@
                 <div class="col-sm-6">
                   <p>Contact</p>
                   <label class="text-muted">Email</label>
-                  <input type="text" class="form-control mb-4" />
+                  <input type="text" class="form-control mb-4" v-model="detailUser.email" />
                   <label class="text-muted">Phone Number</label>
-                  <input type="text" class="form-control mb-4" />
+                  <input type="text" class="form-control mb-4" v-model="detailUser.phonenumber"/>
                   <p class="text-right text-info">Account Setting <b-icon-chevron-right></b-icon-chevron-right> </p>
                 </div>
                 <div class="col-sm-6">
                   <p>Biodata</p>
                   <label class="text-muted">Username</label>
-                  <input type="text" class="form-control mb-4" />
+                  <input type="text" class="form-control mb-4" v-model="detailUser.username"/>
                   <label class="text-muted">City</label>
-                  <select class="form-control mb-4">
+                  <select class="form-control mb-4" v-model="detailUser.city">
                     <option></option>
                   </select>
                   <label class="text-muted">Address</label>
-                  <input type="text" class="form-control mb-4" />
+                  <input type="text" class="form-control mb-4" v-model="detailUser.address"/>
                   <label class="text-muted">Post Code</label>
-                  <input type="text" class="form-control mb-4" />
+                  <input type="text" class="form-control mb-4" v-model="detailUser.postcode"/>
                   <button type="submit" class="btn btn-save">Save</button>
                 </div>
               </div>
@@ -48,22 +48,30 @@ import { mapGetters, mapActions } from 'vuex'
 
 export default {
   name: 'User',
+  data () {
+    return {
+      id: localStorage.getItem('iduser')
+    }
+  },
   components: {
     Navbar,
     CardUser
   },
   computed: {
     ...mapGetters({
-      getDetail: 'user/getDetail'
+      detailUser: 'user/getDetail',
+      allLocation: 'location/getLocation'
     })
   },
   methods: {
     ...mapActions({
-      getDetail: 'products/getDetail'
+      getDetail: 'user/getDetail',
+      getLocation: 'location/getLocation'
     })
   },
   mounted () {
-    this.getDetail()
+    this.getDetail(this.id)
+    this.getLocation()
   }
 }
 </script>
