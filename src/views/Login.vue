@@ -71,14 +71,20 @@ export default {
           this.alertExist()
           localStorage.removeItem('token')
           localStorage.removeItem('refreshToken')
+          localStorage.removeItem('iduser')
+          localStorage.removeItem('username')
         } else if (result === 'Need Activation') {
           this.alertActivate()
           localStorage.removeItem('token')
           localStorage.removeItem('refreshToken')
+          localStorage.removeItem('iduser')
+          localStorage.removeItem('username')
         } else if (result === 'Incorrect password! Please try again') {
           this.alertMatch()
           localStorage.removeItem('token')
           localStorage.removeItem('refreshToken')
+          localStorage.removeItem('iduser')
+          localStorage.removeItem('username')
         } else {
           window.location = '/'
         }

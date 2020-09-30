@@ -19,21 +19,23 @@ const mutations = {
 
 const actions = {
   // get detail data
-  getDetail (context, payload) {
+  onDetail (context, payload) {
     return new Promise((resolve, reject) => {
       axios.get(`${url}/users/getDetail/${payload}`).then((response) => {
         context.commit('SET_DETAIL', response.data.data[0])
         resolve(response)
       }).catch((err) => reject(err))
     })
-  }
+  },
 
   // update data user
-  // update (context, payload) {
-  //   return new Promise((resolve, reject) => {
-  //     axios.patch(`${url}/users/update`)
-  //   })
-  // }
+  onUpdate (context, payload) {
+    return new Promise((resolve, reject) => {
+      axios.patch(`${url}/users/update/${payload.id}`, payload.form).then((response) => {
+        resolve(response)
+      }).catch((err) => reject(err))
+    })
+  }
 }
 
 export default {

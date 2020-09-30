@@ -1,12 +1,15 @@
 <template>
   <div class="card-main mt-3">
     <div class="sub-card m-4">
-      <div class="text-center">
+      <form @click.prevent="update">
+        <div class="text-center">
         <div class="user-profile"><img :src="`http://localhost:3004/${detailUser.image}`" alt="profile" class="rounded-circle mt-4"></div>
-        <b-button variant="outline-info" class="btn-photo d-none d-sm-block btn-sm">Select Photo</b-button>
+        <b-button type="submit" variant="outline-info" class="btn-photo d-none d-sm-block btn-sm">Select Photo</b-button>
         <h5>{{ detailUser.fullname }}</h5>
         <p class="small text-muted">{{ detailUser.address }}</p>
       </div>
+      </form>
+      <input type="file" class="btn btn-outline-info" value="Select Photo" @change="processFile($event)">
         <b-row>
             <b-col><b>Card</b></b-col>
             <b-col><p class="text-info text-right">+ Add</p></b-col>
@@ -51,15 +54,34 @@ export default {
   },
   methods: {
     ...mapActions({
-      getDetail: 'user/getDetail',
+      onDetail: 'user/onDetail',
+      onUpdate: 'user/onUpdate',
       onLogout: 'auth/onLogout'
     }),
+    processFile (event) {
+      this.image = event.target.file[0]
+    },
+    update () {
+      const fd = new FormData()
+      fd.append('image', this.image)
+      const data = {
+        id: this.id,
+        form: fd
+      }
+
+      this.onUpdate(data).then((response) => {
+        console.log(response)
+        alert('data berhasil di update')
+      }).catch((err) => {
+        console.log(err)
+      })
+    },
     logout () {
       this.onLogout().then(() => { window.location = '/' })
     }
   },
   mounted () {
-    this.getDetail(this.id)
+    this.onDetail(this.id)
   }
 }
 </script>
@@ -73,8 +95,8 @@ export default {
   margin: auto;
 }
 .user-profile img{
-  width: 30%;
-  height: 30%;
+  width: 40%;
+  height: 80%;
   border: 3px solid #2395FF;
   padding: 5px;
 }

@@ -27,7 +27,7 @@
               <div v-else class="navbar-profile">
                 <img src="../assets/img/message.png" alt="message" class="button-notifmsg">
                 <img src="../assets/img/bell.png" alt="bell" class="button-notifmsg">
-                <div class="user-profile"><img src="../assets/img/profile.png" alt="profile"></div>
+                <div class="user-profile"><router-link to="/user"><img src="../assets/img/profile.png" alt="profile"></router-link></div>
               </div>
             </div>
           </b-collapse>

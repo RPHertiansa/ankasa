@@ -8,7 +8,7 @@
           <div class="profile mt-3 p-4">
             <p class="sub">PROFILE</p>
             <h3>Profile</h3>
-            <form>
+            <form @click.prevent="update">
               <div class="row mt-4">
                 <div class="col-sm-6">
                   <p>Contact</p>
@@ -25,12 +25,13 @@
                   <label class="text-muted">City</label>
                   <b-form-select v-model="detailUser.city">
                     <b-form-select-option disabled value="null">Select Category</b-form-select-option>
-                    <b-form-select-option v-for="(item, index) in allLocation" :key="index" :value="item.city"> {{ item.city }} </b-form-select-option>
+                    <b-form-select-option v-for="(item, index) in allLocation" :key="index" :value="item.idlocation"> {{ item.city }} </b-form-select-option>
                   </b-form-select>
                   <label class="text-muted">Address</label>
                   <input type="text" class="form-control mb-4" v-model="detailUser.address"/>
                   <label class="text-muted">Post Code</label>
                   <input type="text" class="form-control mb-4" v-model="detailUser.postcode" disabled/>
+                  <input type="text" class="form-control mb-4" v-model="detailUser.idlocation" disabled/>
                   <button type="submit" class="btn btn-save">Save</button>
                 </div>
               </div>
@@ -66,12 +67,32 @@ export default {
   },
   methods: {
     ...mapActions({
-      getDetail: 'user/getDetail',
-      getLocation: 'location/getLocation'
-    })
+      onDetail: 'user/onDetail',
+      getLocation: 'location/getLocation',
+      onUpdate: 'user/onUpdate',
+      updateLocation: 'location/updateLocation'
+    }),
+    update () {
+      const fd = new FormData()
+      fd.append('email', this.detailUser.email)
+      fd.append('username', this.detailUser.username)
+      fd.append('phonenumber', this.detailUser.phonenumber)
+      fd.append('address', this.detailUser.address)
+      fd.append('idlocation', this.detailUser.city)
+      const data = {
+        id: this.id,
+        form: fd
+      }
+
+      this.onUpdate(data).then((response) => {
+        console.log(response)
+      }).catch((err) => {
+        console.log(err)
+      })
+    }
   },
   mounted () {
-    this.getDetail(this.id)
+    this.onDetail(this.id)
     this.getLocation()
   }
 }
