@@ -100,7 +100,7 @@
               </div>
             </div>
             <p class="text-primary">$ {{item.price}},00 <span class="text-secondary">/pax</span></p>
-            <button class="btn btn-primary button-select" @click="toDetailFlight(item.idflight, item.price)">Select</button>
+            <button class="btn btn-primary button-select" @click="toDetailFlight(item.idflight, item.price, item.imgairlines, item.nameairlines)">Select</button>
           </div>
           <div class="detail-ticket">
             <p class="font-weight-bold detail-button">view detail</p>
@@ -171,19 +171,22 @@ export default {
       this.searchdata.direct = this.directValue
       console.log(this.searchdata)
     },
-    toDetailFlight (idflight, price) {
+    toDetailFlight (idflight, price, imgplane, nameplane) {
       const data = {
         idflight,
         iduser: localStorage.getItem('iduser'),
         childPassengger: this.searchdata.childPassengger,
         adultPassengger: this.searchdata.adultPassengger,
-        price
+        price,
+        imgplane,
+        nameplane
       }
       localStorage.setItem('bookingdata', JSON.stringify(data))
+      this.$router.push('/flightdetail')
     }
   },
   mounted () {
-    this.getFlightData()
+    // this.getFlightData()
   }
 }
 </script>
