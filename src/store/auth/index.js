@@ -39,6 +39,9 @@ const actions = {
         .then(result => {
           localStorage.setItem('token', result.data.data.token)
           localStorage.setItem('refreshToken', result.data.data.refreshToken)
+          localStorage.setItem('iduser', result.data.data.iduser)
+          localStorage.setItem('username', result.data.data.username)
+          console.log(result)
           resolve(result.data.message)
         })
         .catch(err => {
@@ -50,6 +53,9 @@ const actions = {
     return new Promise(resolve => {
       localStorage.removeItem('token')
       localStorage.removeItem('refreshToken')
+      localStorage.removeItem('iduser')
+      localStorage.removeItem('searchdata')
+      localStorage.removeItem('username')
       resolve()
     })
   },

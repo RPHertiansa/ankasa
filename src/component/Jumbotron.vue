@@ -75,6 +75,12 @@ export default {
   }
 }
 
+@media screen and (max-width: 1200) {
+  .main-jumbotron {
+    grid-template-columns: 2fr 1fr;
+  }
+}
+
 @media screen and (max-width: 768px) {
   .main-jumbotron img:nth-child(2),
   .main-jumbotron img:nth-child(3) {

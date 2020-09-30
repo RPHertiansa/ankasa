@@ -8,15 +8,15 @@
             <div class="route-header">
               <div class="route-from">
                 <p class="text-white">From</p>
-                <h5 class="text-white font-weight-bold">Medan (IDN)</h5>
+                <h5 class="text-white font-weight-bold">{{searchdata.locationFrom}} ({{searchdata.countryfrom}})</h5>
               </div>
               <img src="../assets/img/whiteswitch.png" alt="switch arrow">
               <div class="route-from text-right">
                 <p class="text-white">To</p>
-                <h5 class="text-white font-weight-bold">Tokyo (JPN)</h5>
+                <h5 class="text-white font-weight-bold">{{searchdata.locationTo}} ({{searchdata.countyto}})</h5>
               </div>
             </div>
-            <p class="route-explain">Monday, 20 July 20 | 6 Passenger | Economy</p>
+            <p class="route-explain">{{searchdata.departure}} | {{searchdata.adultPassengger + searchdata.childPassengger}} Passenger | {{searchdata.seatClass}}</p>
           </div>
         </div>
         <p class="font-weight-bold text-white change-search">Change Search</p>
@@ -26,7 +26,12 @@
 
 <script>
 export default {
-  name: 'Header'
+  name: 'Header',
+  data () {
+    return {
+      searchdata: JSON.parse(localStorage.getItem('searchdata'))
+    }
+  }
 }
 </script>
 

@@ -47,25 +47,39 @@
           <b-form-select class="mb-3 mr-2" v-model="childTotal">
             <b-form-select-option :value="null" disabled>Child</b-form-select-option>
             <b-form-select-option value="1">1 Child</b-form-select-option>
+            <b-form-select-option value="2">2 Child</b-form-select-option>
+            <b-form-select-option value="3">3 Child</b-form-select-option>
+            <b-form-select-option value="4">4 Child</b-form-select-option>
+            <b-form-select-option value="5">5 Child</b-form-select-option>
+            <b-form-select-option value="6">6 Child</b-form-select-option>
+            <b-form-select-option value="7">7 Child</b-form-select-option>
+            <b-form-select-option value="8">8 Child</b-form-select-option>
           </b-form-select>
           <b-form-select class="mb-3" v-model="adultTotal">
             <b-form-select-option :value="null" disabled>Adult</b-form-select-option>
             <b-form-select-option value="1">1 Adult</b-form-select-option>
+            <b-form-select-option value="2">2 Adult</b-form-select-option>
+            <b-form-select-option value="3">3 Adult</b-form-select-option>
+            <b-form-select-option value="4">4 Adult</b-form-select-option>
+            <b-form-select-option value="5">5 Adult</b-form-select-option>
+            <b-form-select-option value="6">6 Adult</b-form-select-option>
+            <b-form-select-option value="7">7 Adult</b-form-select-option>
+            <b-form-select-option value="8">8 Adult</b-form-select-option>
           </b-form-select>
         </div>
       </div>
       <div class="class-select">
         <p class="text-secondary">Which class do you want?</p>
         <div class="custom-control custom-radio custom-control-inline radio-button">
-          <input type="radio" id="customRadioInline1" name="customRadioInline1" class="custom-control-input" @click="setSeatClass('economy')"/>
+          <input type="radio" id="customRadioInline1" name="customRadioInline1" class="custom-control-input" @click="setSeatClass('Economy')"/>
           <label class="custom-control-label font-weight-light" for="customRadioInline1">Economy</label>
         </div>
         <div class="custom-control custom-radio custom-control-inline radio-button">
-          <input type="radio" id="customRadioInline2" name="customRadioInline1" class="custom-control-input" @click="setSeatClass('business')"/>
+          <input type="radio" id="customRadioInline2" name="customRadioInline1" class="custom-control-input" @click="setSeatClass('Business')"/>
           <label class="custom-control-label font-weight-light" for="customRadioInline2">Business</label>
         </div>
         <div class="custom-control custom-radio custom-control-inline radio-button">
-          <input type="radio" id="customRadioInline3" name="customRadioInline1" class="custom-control-input" @click="setSeatClass('first class')"/>
+          <input type="radio" id="customRadioInline3" name="customRadioInline1" class="custom-control-input" @click="setSeatClass('First class')"/>
           <label class="custom-control-label font-weight-light" for="customRadioInline3">First class</label>
         </div>
       </div>
@@ -100,23 +114,29 @@ export default {
     searchFlight () {
       let countryfrom = ''
       let countryto = ''
-      if (this.locationfrom.city === 'Select City' && this.locationto.city === 'Select City') {
+      if (this.locationfrom.city === 'Select City' || this.locationto.city === 'Select City') {
         this.$swal('Plese select destination')
+      } else if (this.locationfrom.city === this.locationto.city) {
+        this.$swal('Destination cannot be same')
       } else {
         countryfrom = this.locationfrom.city
         countryto = this.locationto.city
       }
       const search = {
         departure: !this.selectDate ? this.$swal('Plese fill departure field') : this.selectDate,
-        childPassengger: !this.childTotal ? this.$swal('Plese fill person field') : this.childTotal,
-        adultPassengger: !this.adultTotal ? this.$swal('Plese fill person field') : this.adultTotal,
+        childPassengger: !this.childTotal ? this.$swal('Plese fill person field') : parseInt(this.childTotal),
+        adultPassengger: !this.adultTotal ? this.$swal('Plese fill person field') : parseInt(this.adultTotal),
         seatClass: !this.seatClass ? this.$swal('Choose one class seat') : this.seatClass,
         flightType: !this.flightType ? this.$swal('Choose one flight type') : this.flightType,
         locationFrom: countryfrom,
-        locationTo: countryto
+        locationTo: countryto,
+        countryfrom: this.locationfrom.country,
+        countyto: this.locationto.country
       }
       if (!this.selectDate || !this.childTotal || !this.adultTotal || !this.seatClass || !this.flightType || !countryto || !countryfrom) {
       } else {
+        const searchData = JSON.stringify(search)
+        localStorage.setItem('searchdata', searchData)
         this.searchDataFlight(search)
         this.$router.push('/flight')
       }

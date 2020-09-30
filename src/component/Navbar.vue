@@ -21,13 +21,13 @@
               <b-nav-item href="#" class="btn-route ml-2">My Booking</b-nav-item>
             </b-navbar-nav>
             <div>
-              <div v-if="type === 'flight'" class="navbar-profile">
+              <div v-if="type === 'home' && isLogin === false">
+                <router-link to="/splash"><button class="btn btn-primary btn-signin">Sign Up</button></router-link>
+              </div>
+              <div v-else class="navbar-profile">
                 <img src="../assets/img/message.png" alt="message" class="button-notifmsg">
                 <img src="../assets/img/bell.png" alt="bell" class="button-notifmsg">
                 <div class="user-profile"><img src="../assets/img/profile.png" alt="profile"></div>
-              </div>
-              <div v-else>
-                <router-link to="/splash"><button class="btn btn-primary btn-signin">Sign Up</button></router-link>
               </div>
             </div>
           </b-collapse>
@@ -37,9 +37,16 @@
 </template>
 
 <script>
+import { mapGetters } from 'vuex'
+
 export default {
   name: 'Navbar',
   props: ['type'],
+  computed: {
+    ...mapGetters({
+      isLogin: 'auth/isLogin'
+    })
+  },
   methods: {
     searchToggle (event) {
       this.$emit('searchtoggle')

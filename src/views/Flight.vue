@@ -10,17 +10,61 @@
             <p class="font-weight-bold">Transit</p>
             <div class="filter-select">
               <p>Direct</p>
-              <input type="checkbox" name="Direct">
+              <input type="checkbox" name="Direct" @click="direct($event)">
               <p>Transit</p>
-              <input type="checkbox" name="Transit">
+              <input type="checkbox" name="Transit" @click="transit($event)">
               <p>Transit 2+</p>
-              <input type="checkbox" name="Transit 2+">
+              <input type="checkbox" name="Transit 2+" @click="transit2($event)">
             </div>
+            <p class="font-weight-bold mt-3">Facilities</p>
+            <div class="filter-select">
+              <p>Luggage</p>
+              <input type="checkbox" name="Luggage">
+              <p>In-Flight Meal</p>
+              <input type="checkbox" name="In-Flight Meal">
+              <p>Wi-fi</p>
+              <input type="checkbox" name="Wi-fi">
+            </div>
+            <p class="font-weight-bold mt-3">Departure Time</p>
+            <div class="filter-select">
+              <p>00:00 - 06:00</p>
+              <input type="checkbox" name="00:00 - 06:00">
+              <p>06:00 - 12:00</p>
+              <input type="checkbox" name="06:00 - 12:00">
+              <p>12:00 - 18:00</p>
+              <input type="checkbox" name="12:00 - 18:00">
+              <p>18:00 - 24:00</p>
+              <input type="checkbox" name="18:00 - 24:00">
+            </div>
+            <p class="font-weight-bold mt-3">Time Arrived</p>
+            <div class="filter-select">
+              <p>00:00 - 06:00</p>
+              <input type="checkbox" name="00:00 - 06:00">
+              <p>06:00 - 12:00</p>
+              <input type="checkbox" name="06:00 - 12:00">
+              <p>12:00 - 18:00</p>
+              <input type="checkbox" name="12:00 - 18:00">
+              <p>18:00 - 24:00</p>
+              <input type="checkbox" name="18:00 - 24:00">
+            </div>
+            <p class="font-weight-bold mt-3">Airlines</p>
+            <div class="filter-select">
+              <p>Garuda Indonesia</p>
+              <input type="checkbox" name="Garuda Indonesia">
+              <p>Air Asia</p>
+              <input type="checkbox" name="Air Asia">
+              <p>Lion Air</p>
+              <input type="checkbox" name="Lion Air">
+            </div>
+            <button class="btn btn-primary" style="width: 100%;" @click="goFilter">Filter</button>
           </div>
         </div>
       </div>
       <div class="flight-list">
-        <h2 class="mb-4">Select Ticket</h2>
+        <div style="display: flex; justify-content: space-between; align-item: center;">
+          <h2 class="mb-4">Select Ticket</h2>
+          <p class="font-weight-bold text-primary mt-3">Filter</p>
+        </div>
         <div class="flight-box p-3 mb-4" v-for="(item, index) in dataFlight" :key="index">
           <div class="plane-brand">
             <img :src="`http://localhost:3004/${item.imgairlines}`" alt="brand" class="garuda">
@@ -82,6 +126,12 @@ export default {
     Footer,
     Header
   },
+  data () {
+    return {
+      searchdata: JSON.parse(localStorage.getItem('searchdata')),
+      directValue: 0
+    }
+  },
   computed: {
     ...mapGetters({
       dataFlight: 'flight/getDataFlight'
@@ -90,7 +140,37 @@ export default {
   methods: {
     ...mapActions({
       getFlightData: 'flight/findFlightData'
-    })
+    }),
+    direct (event) {
+      if (event.target.checked) {
+        this.directValue = 1
+      } else {
+        this.directValue = 0
+      }
+      console.log(this.directValue)
+    },
+    transit (event) {
+      let transitData = 0
+      if (event.target.checked) {
+        transitData = 1
+      } else {
+        transitData = 0
+      }
+      console.log(transitData)
+    },
+    transit2 (event) {
+      let transitData2 = 0
+      if (event.target.checked) {
+        transitData2 = 1
+      } else {
+        transitData2 = 0
+      }
+      console.log(transitData2)
+    },
+    goFilter () {
+      this.searchdata.direct = this.directValue
+      console.log(this.searchdata)
+    }
   },
   mounted () {
     // this.getFlightData()
