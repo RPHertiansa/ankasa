@@ -127,10 +127,16 @@ input[type="file"] {
   margin: 20px auto;
 }
 .custom-file-upload {
-    border: 1px solid #ccc;
-    display: inline-block;
-    padding: 6px 12px;
-    cursor: pointer;
+  border: 1px solid #ccc;
+  display: inline-block;
+  padding: 6px 12px;
+  cursor: pointer;
+  background-color: #FFFFFF;
+  border: 1px solid #2395FF;
+  box-sizing: border-box;
+  border-radius: 10px;
+  color: #2395FF;
+  margin-bottom: 15px;
 }
 .card-main {
   background-color: #fff;
@@ -177,8 +183,16 @@ p {
   font-weight: bold;
   cursor: pointer;
 }
-@media (max-width: 768px) {
-
+@media (max-width: 1008px) {
+  .card-main {
+    width: 400px;
+  }
+  .user-profile img {
+    margin-bottom: 15px;
+  }
+  .mini-card b {
+    letter-spacing: 4px;
+  }
 }
 @media (max-width: 576px) {
   .card-main {

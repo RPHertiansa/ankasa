@@ -27,7 +27,7 @@
               <div v-else class="navbar-profile">
                 <img src="../assets/img/message.png" alt="message" class="button-notifmsg">
                 <img src="../assets/img/bell.png" alt="bell" class="button-notifmsg">
-                <div class="user-profile"><router-link to="/user"><img src="../assets/img/profile.png" alt="profile"></router-link></div>
+                <div class="user-profile"><router-link to="/user"><img :src="`http://localhost:3004/${detailUser.image}`" alt="profile"></router-link></div>
               </div>
             </div>
           </b-collapse>
@@ -37,21 +37,33 @@
 </template>
 
 <script>
-import { mapGetters } from 'vuex'
+import { mapGetters, mapActions } from 'vuex'
 
 export default {
   name: 'Navbar',
   props: ['type'],
+  data () {
+    return {
+      id: localStorage.getItem('iduser')
+    }
+  },
   computed: {
     ...mapGetters({
-      isLogin: 'auth/isLogin'
+      isLogin: 'auth/isLogin',
+      detailUser: 'user/getDetail'
     })
   },
   methods: {
     searchToggle (event) {
       this.$emit('searchtoggle')
       event.target.classList.toggle('button-on')
-    }
+    },
+    ...mapActions({
+      onDetail: 'user/onDetail'
+    })
+  },
+  mounted () {
+    this.onDetail(this.id)
   }
 }
 </script>
@@ -115,7 +127,7 @@ export default {
   justify-content: space-between;
 }
 
-.user-profile {
+.user-profile img {
   width: 45px;
   height: 45px;
   margin-top: -10px;

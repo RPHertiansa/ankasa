@@ -7,17 +7,17 @@
       </b-card-text>
 
       <b-carousel controls indicators>
-        <b-carousel-slide>
+        <!-- <b-carousel-slide>
           <template v-slot:img>
-            <!-- <div class="row">
+            <div class="row">
               <div class="outline">
-                <b-img :src="`http://localhost:3004/${getLocation.data.imglocation}`" class="rounded-circle" />
-                <p>{{ getLocation.data.city }}</p>
+                <b-img :src="`http://localhost:3004/${getLocation.imglocation}`" class="rounded-circle" />
+                <p>{{ getLocation.city }}</p>
                 <p></p>
               </div>
-            </div> -->
+            </div>
           </template>
-        </b-carousel-slide>
+        </b-carousel-slide> -->
 
         <b-carousel-slide>
           <template v-slot:img>
@@ -92,7 +92,7 @@ export default {
     })
   },
   mounted () {
-    // this.getAll()
+    this.getAll()
   }
 }
 

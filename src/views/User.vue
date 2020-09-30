@@ -4,7 +4,7 @@
     <div class="container">
       <b-row>
         <b-col><CardUser /></b-col>
-        <b-col cols="8">
+        <b-col>
           <div class="profile mt-3 p-4">
             <p class="sub">PROFILE</p>
             <h3>Profile</h3>
@@ -31,7 +31,6 @@
                   <input type="text" class="form-control mb-4" v-model="detailUser.address"/>
                   <label class="text-muted">Post Code</label>
                   <input type="text" class="form-control mb-4" v-model="detailUser.postcode" disabled/>
-                  <input type="text" class="form-control mb-4" v-model="detailUser.idlocation" disabled/>
                   <button type="submit" class="btn btn-save">Save</button>
                 </div>
               </div>
@@ -44,6 +43,7 @@
 </template>
 
 <script>
+import Swal from 'sweetalert2'
 import Navbar from '../component/Navbar'
 import CardUser from '../component/CardUser'
 import { mapGetters, mapActions } from 'vuex'
@@ -83,10 +83,21 @@ export default {
       }
 
       this.onUpdate(data).then((response) => {
-        console.log(response)
+        this.alertSuccess(response)
         window.location = '/user'
-      }).catch((err) => {
-        console.log(err)
+      }).catch((err) => this.alertError(err))
+    },
+    alertSuccess () {
+      Swal.fire({
+        icon: 'success',
+        title: 'Your Personal Info Updated'
+      })
+    },
+    alertError () {
+      Swal.fire({
+        icon: 'error',
+        title: 'Oops...',
+        text: 'Something went wrong!'
       })
     }
   },
@@ -139,7 +150,7 @@ input[type="password"]:focus, select:focus {
 }
 @media(max-width: 768px) {
   .profile {
-    width: 500px;
+    width: 1000px;
     height: 100%;
     margin-bottom: 15px;
   }
