@@ -34,6 +34,7 @@ const actions = {
     return new Promise((resolve, reject) => {
       axios.get(`${url}/flight/getall?from=${payload.locationFrom}&destination=${payload.locationTo}&depature=${payload.departure}&flighttype=${payload.flightType}&classflight=${payload.seatClass}`).then(result => {
         context.commit('SET_DATA_FLIGHT', result.data.data)
+        console.log(result)
       }).catch(err => {
         console.log(err)
       })
