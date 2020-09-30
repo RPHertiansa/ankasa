@@ -2,7 +2,7 @@
   <div class="flight-detail">
     <Navbar />
     <Header type="flight-detail" />
-  <form>
+  <form @submit.prevent="booking">
     <div class="row justify-content-center">
       <div class="col-sm-6">
         <h4 class="text-white font-weight-bold sub-title mb-4">
@@ -11,13 +11,11 @@
         <div class="row info-panel">
           <div class="col-sm">
             <label class="text-muted">Full Name</label>
-            <input type="text" class="form-control mb-4" />
+            <input type="text" class="form-control mb-4" v-model="userData.fullname"/>
             <label class="text-muted">Email</label>
-            <input type="text" class="form-control mb-4" />
+            <input type="text" class="form-control mb-4" v-model="userData.email"/>
             <label class="text-muted">Phone Number</label>
-            <select class="form-control mb-4">
-              <option></option>
-            </select>
+            <input type="text" class="form-control mb-4" v-model="userData.phonenumber" required/>
             <b-alert variant="danger" show>
               <b-icon-exclamation-triangle-fill class="mr-2"></b-icon-exclamation-triangle-fill>
               Make sure the customer data is correct
@@ -30,8 +28,8 @@
           Flight Details
         </h4>
         <div class="info-flight">
-          <img src="../assets/img/garuda.png" alt="logo-garuda" />
-          <b class="text-muted ml-5">Garuda Indonesia</b>
+          <img :src="`http://localhost:3004/${bookingData.imgplane}`" alt="logo-garuda" />
+          <b class="text-muted ml-5">{{bookingData.nameplane}}</b>
           <div class="route-way-detail">
             <div class="from-title">
               <p class="font-weight-bold">{{searchData.locationFrom}} ({{searchData.countryfrom}})</p>
@@ -70,10 +68,11 @@
               <option></option>
             </select>
             <label class="text-muted">Full Name</label>
-            <input type="text" class="form-control mb-4" />
+            <input type="text" class="form-control mb-4" v-model="userData.fullname"/>
             <label class="text-muted">Nationality</label>
-            <select class="form-control mb-4">
-              <option></option>
+            <select class="form-control mb-4" v-model="nationality" required>
+              <option :value="null" disabled>Select Country</option>
+              <option v-for="(item, index) in locationData" :key="index" :value="item.country">{{item.country}}</option>
             </select>
           </div>
         </div>
@@ -90,7 +89,7 @@
           <div class="col-sm">
             <b-row>
               <b-col>
-                <b-form-checkbox>Travel Insurance </b-form-checkbox>
+                <input type="checkbox" @click="insurance($event)"><span class="ml-2">Travel Insurance</span>
               </b-col>
               <b-col>
                 <p class="text-right text-info">$ 2,00/pax</p>
@@ -103,7 +102,7 @@
       </div>
       <div class="col-sm-4"></div>
     </div>
-    <button type="submit" class="btn btn-login mt-4" @click.prevent="booking"> Proceed to payment</button>
+    <button type="submit" class="btn btn-login mt-4"> Proceed to payment</button>
   </form>
     <Footer />
   </div>
@@ -113,6 +112,7 @@
 import Navbar from '../component/Navbar'
 import Footer from '../component/Footer'
 import Header from '../component/Header'
+import { mapGetters, mapActions } from 'vuex'
 
 export default {
   name: 'FlightDetail',
@@ -121,23 +121,50 @@ export default {
     Header,
     Footer
   },
+  computed: {
+    ...mapGetters({
+      userData: 'user/getDetail',
+      locationData: 'location/getLocation'
+    })
+  },
   data () {
     return {
       bookingData: JSON.parse(localStorage.getItem('bookingdata')),
-      searchData: JSON.parse(localStorage.getItem('searchdata'))
+      searchData: JSON.parse(localStorage.getItem('searchdata')),
+      id: localStorage.getItem('iduser'),
+      nationality: null,
+      travelInsurance: 0
     }
   },
   methods: {
+    ...mapActions({
+      getDetail: 'user/getDetail',
+      location: 'location/getLocation',
+      insertBooking: 'booking/insertBooking'
+    }),
+    insurance (event) {
+      if (event.target.checked) {
+        this.travelInsurance = 2
+      } else {
+        this.travelInsurance = 0
+      }
+    },
     booking () {
       const dataBO = {
         iduser: this.bookingData.iduser,
         idflight: this.bookingData.idflight,
         child: this.bookingData.childPassengger,
         adult: this.bookingData.adultPassengger,
-        price: this.bookingData.price * (this.bookingData.childPassengger + this.bookingData.adultPassengger)
+        price: this.bookingData.price * (this.bookingData.childPassengger + this.bookingData.adultPassengger + this.travelInsurance),
+        nationality: this.nationality,
+        insurance: this.travelInsurance
       }
-      console.log(dataBO)
+      this.insertBooking(dataBO)
     }
+  },
+  mounted () {
+    this.getDetail(this.id)
+    this.location()
   }
 }
 </script>
@@ -145,7 +172,7 @@ export default {
 <style scoped>
 .flight-detail {
   background-color: #F5F6FA;
-  overflow-x: hidden;
+  overflow: hidden;
 }
 .info-panel {
   box-shadow: 0 3px 20px rgba(0, 0, 0, 0.5);

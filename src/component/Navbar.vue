@@ -3,7 +3,7 @@
       <div class="container navbar-content">
         <b-navbar toggleable="lg" type="light" variant="white">
           <img src="../assets/img/planeBlue.png" alt="plane-logo" class="mr-2">
-          <b-navbar-brand href="#" class="brand-name">Ankasa</b-navbar-brand>
+          <b-navbar-brand to="/" class="brand-name">Ankasa</b-navbar-brand>
           <b-navbar-toggle target="nav-collapse"></b-navbar-toggle>
           <b-collapse id="nav-collapse" class="nav-responsive" is-nav>
             <b-navbar-nav class="m-auto main-navbar">
@@ -18,7 +18,7 @@
                 </div>
               </b-nav-form>
               <b-nav-item class="btn-route ml-2" @click="searchToggle($event)">Find Ticket</b-nav-item>
-              <b-nav-item href="#" class="btn-route ml-2">My Booking</b-nav-item>
+              <b-nav-item to="/mybooking" class="btn-route ml-2">My Booking</b-nav-item>
             </b-navbar-nav>
             <div>
               <div v-if="type === 'home' && isLogin === false">
