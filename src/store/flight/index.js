@@ -32,7 +32,7 @@ const actions = {
   },
   searchFlightData: (context, payload) => {
     return new Promise((resolve, reject) => {
-      axios.get(`${url}/flight/getall?from=${payload.locationFrom}&destination=${payload.locationTo}&depature=${payload.departure}&flighttype=${payload.flightType}&classflight=${payload.seatClass}`).then(result => {
+      axios.get(`${url}/flight/getall?from=${payload.locationFrom}&destination=${payload.locationTo}&depature=${payload.departure}&flighttype=${payload.flightType}&classflight=${payload.seatClass}&direct=${payload.direct}&transit=${payload.transit}&transit2=${payload.transit2}&luggage=${payload.luggage}&meal=${payload.flightMeal}&wifi=${payload.wifi}&departuretimeFrom=${payload.departureFrom}&departuretimeTo=${payload.departureTo}&timearrivedFrom=${payload.timeArrivedFrom}$timearrivedTo=${payload.timeArrivedTo}&airlines=${payload.airlines}`).then(result => {
         context.commit('SET_DATA_FLIGHT', result.data.data)
       }).catch(err => {
         console.log(err)

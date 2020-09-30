@@ -19,42 +19,72 @@
             <p class="font-weight-bold mt-3">Facilities</p>
             <div class="filter-select">
               <p>Luggage</p>
-              <input type="checkbox" name="Luggage">
+              <input type="checkbox" name="Luggage" @click="luggage($event)">
               <p>In-Flight Meal</p>
-              <input type="checkbox" name="In-Flight Meal">
+              <input type="checkbox" name="In-Flight Meal" @click="flightMeal($event)">
               <p>Wi-fi</p>
-              <input type="checkbox" name="Wi-fi">
+              <input type="checkbox" name="Wi-fi" @click="wifi($event)">
             </div>
             <p class="font-weight-bold mt-3">Departure Time</p>
             <div class="filter-select">
               <p>00:00 - 06:00</p>
-              <input type="checkbox" name="00:00 - 06:00">
+              <div class="custom-control custom-radio custom-control-inline radio-button">
+                <input type="radio" id="customRadioInline1" name="customRadioInline1" class="custom-control-input" @click="departure('00:00', '06:00')"/>
+                <label class="custom-control-label font-weight-light" for="customRadioInline1"></label>
+              </div>
               <p>06:00 - 12:00</p>
-              <input type="checkbox" name="06:00 - 12:00">
+              <div class="custom-control custom-radio custom-control-inline radio-button">
+                <input type="radio" id="customRadioInline2" name="customRadioInline1" class="custom-control-input" @click="departure('06:00', '12:00')"/>
+                <label class="custom-control-label font-weight-light" for="customRadioInline2"></label>
+              </div>
               <p>12:00 - 18:00</p>
-              <input type="checkbox" name="12:00 - 18:00">
+              <div class="custom-control custom-radio custom-control-inline radio-button">
+                <input type="radio" id="customRadioInline3" name="customRadioInline1" class="custom-control-input" @click="departure('12:00', '18:00')"/>
+                <label class="custom-control-label font-weight-light" for="customRadioInline3"></label>
+              </div>
               <p>18:00 - 24:00</p>
-              <input type="checkbox" name="18:00 - 24:00">
+              <div class="custom-control custom-radio custom-control-inline radio-button">
+                <input type="radio" id="customRadioInline4" name="customRadioInline1" class="custom-control-input" @click="departure('18:00', '24:00')"/>
+                <label class="custom-control-label font-weight-light" for="customRadioInline4"></label>
+              </div>
+              <p>00:00 - 24:00</p>
+              <div class="custom-control custom-radio custom-control-inline radio-button">
+                <input type="radio" id="customRadioInline5" name="customRadioInline1" class="custom-control-input" @click="departure('00:00', '24:00')"/>
+                <label class="custom-control-label font-weight-light" for="customRadioInline5"></label>
+              </div>
             </div>
             <p class="font-weight-bold mt-3">Time Arrived</p>
             <div class="filter-select">
               <p>00:00 - 06:00</p>
-              <input type="checkbox" name="00:00 - 06:00">
+              <div class="custom-control custom-radio custom-control-inline radio-button">
+                <input type="radio" id="timeArrived1" name="timearrived" class="custom-control-input" @click="timeArrived('00:00', '06:00')"/>
+                <label class="custom-control-label font-weight-light" for="timeArrived1"></label>
+              </div>
               <p>06:00 - 12:00</p>
-              <input type="checkbox" name="06:00 - 12:00">
+              <div class="custom-control custom-radio custom-control-inline radio-button">
+                <input type="radio" id="timeArrived2" name="timearrived" class="custom-control-input" @click="timeArrived('06:00', '12:00')"/>
+                <label class="custom-control-label font-weight-light" for="timeArrived2"></label>
+              </div>
               <p>12:00 - 18:00</p>
-              <input type="checkbox" name="12:00 - 18:00">
+              <div class="custom-control custom-radio custom-control-inline radio-button">
+                <input type="radio" id="timeArrived3" name="timearrived" class="custom-control-input" @click="timeArrived('12:00', '18:00')"/>
+                <label class="custom-control-label font-weight-light" for="timeArrived3"></label>
+              </div>
               <p>18:00 - 24:00</p>
-              <input type="checkbox" name="18:00 - 24:00">
+              <div class="custom-control custom-radio custom-control-inline radio-button">
+                <input type="radio" id="timeArrived4" name="timearrived" class="custom-control-input" @click="timeArrived('18:00', '24:00')"/>
+                <label class="custom-control-label font-weight-light" for="timeArrived4"></label>
+              </div>
+              <p>00:00 - 24:00</p>
+              <div class="custom-control custom-radio custom-control-inline radio-button">
+                <input type="radio" id="timeArrived5" name="timearrived" class="custom-control-input" @click="timeArrived('00:00', '24:00')"/>
+                <label class="custom-control-label font-weight-light" for="timeArrived5"></label>
+              </div>
             </div>
             <p class="font-weight-bold mt-3">Airlines</p>
-            <div class="filter-select">
-              <p>Garuda Indonesia</p>
-              <input type="checkbox" name="Garuda Indonesia">
-              <p>Air Asia</p>
-              <input type="checkbox" name="Air Asia">
-              <p>Lion Air</p>
-              <input type="checkbox" name="Lion Air">
+            <div class="filter-select" style="border: none;" v-for="(item, index) in getDataAirlines" :key="index">
+              <p>{{item.nameairlines}}</p>
+              <input type="checkbox" name="Garuda Indonesia" @click="filterAirlines($event, item.idairlines)">
             </div>
             <button class="btn btn-primary" style="width: 100%;" @click="goFilter">Filter</button>
           </div>
@@ -103,7 +133,7 @@
             <button class="btn btn-primary button-select" @click="toDetailFlight(item.idflight, item.price, item.imgairlines, item.nameairlines)">Select</button>
           </div>
           <div class="detail-ticket">
-            <p class="font-weight-bold detail-button">view detail</p>
+            <p class="font-weight-bold detail-button" style="cursor: pointer;" @click="toDetailFlight(item.idflight, item.price, item.imgairlines, item.nameairlines)">view detail</p>
             <img src="../assets/img/btnback.png" alt="arrow">
           </div>
         </div>
@@ -129,47 +159,102 @@ export default {
   data () {
     return {
       searchdata: JSON.parse(localStorage.getItem('searchdata')),
-      directValue: 0
+      directValue: '',
+      transitData: '',
+      transit2Data: '',
+      luggageData: '',
+      flightMealData: '',
+      wifiData: '',
+      departureFrom: '00:00',
+      departureTo: '24:00',
+      timeArrivedFrom: '00:00',
+      timeArrivedTo: '24:00',
+      airlines: ''
     }
   },
   computed: {
     ...mapGetters({
-      dataFlight: 'flight/getDataFlight'
+      dataFlight: 'flight/getDataFlight',
+      getDataAirlines: 'airlines/getDataAirlines'
     })
   },
   methods: {
     ...mapActions({
-      getFlightData: 'flight/findFlightData'
+      getFlightData: 'flight/findFlightData',
+      filterFlight: 'flight/searchFlightData',
+      airplaneData: 'airlines/findDataAirlines'
     }),
     direct (event) {
       if (event.target.checked) {
         this.directValue = 1
       } else {
-        this.directValue = 0
+        this.directValue = ''
       }
       console.log(this.directValue)
     },
     transit (event) {
-      let transitData = 0
       if (event.target.checked) {
-        transitData = 1
+        this.transitData = 1
       } else {
-        transitData = 0
+        this.transitData = ''
       }
-      console.log(transitData)
     },
     transit2 (event) {
-      let transitData2 = 0
       if (event.target.checked) {
-        transitData2 = 1
+        this.transit2Data = 1
       } else {
-        transitData2 = 0
+        this.transit2Data = ''
       }
-      console.log(transitData2)
+    },
+    luggage (event) {
+      if (event.target.checked) {
+        this.luggageData = 1
+      } else {
+        this.luggageData = ''
+      }
+    },
+    wifi (event) {
+      if (event.target.checked) {
+        this.wifiData = 1
+      } else {
+        this.wifiData = ''
+      }
+    },
+    flightMeal (event) {
+      if (event.target.checked) {
+        this.flightMealData = 1
+      } else {
+        this.flightMealData = ''
+      }
+    },
+    departure (from, to) {
+      this.departureFrom = from
+      this.departureTo = to
+    },
+    timeArrived (from, to) {
+      this.timeArrivedFrom = from
+      this.timeArrivedTo = to
+    },
+    filterAirlines (event, id) {
+      if (event.target.checked) {
+        this.airlines = id
+      } else {
+        this.airlines = ''
+      }
     },
     goFilter () {
       this.searchdata.direct = this.directValue
-      console.log(this.searchdata)
+      this.searchdata.transit = this.transitData
+      this.searchdata.transit2 = this.transit2Data
+      this.searchdata.luggage = this.luggageData
+      this.searchdata.flightMeal = this.flightMealData
+      this.searchdata.wifi = this.wifiData
+      this.searchdata.departureFrom = this.departureFrom
+      this.searchdata.departureTo = this.departureTo
+      this.searchdata.timeArrivedFrom = this.timeArrivedFrom
+      this.searchdata.timeArrivedTo = this.timeArrivedTo
+      this.searchdata.airlines = this.airlines
+      this.filterFlight(this.searchdata)
     },
     toDetailFlight (idflight, price, imgplane, nameplane) {
       const data = {
@@ -187,6 +272,7 @@ export default {
   },
   mounted () {
     // this.getFlightData()
+    this.airplaneData()
   }
 }
 </script>
@@ -271,6 +357,7 @@ export default {
 .more-transit {
   margin-top: -15px;
 }
+
 @media screen and (max-width: 1200px) {
   .filter-menu {
     position: absolute;

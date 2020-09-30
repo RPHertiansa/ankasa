@@ -17,7 +17,10 @@
                   <button><b-icon icon="search" variant="secondary"></b-icon></button>
                 </div>
               </b-nav-form>
-              <b-nav-item class="btn-route ml-2" @click="searchToggle($event)">Find Ticket</b-nav-item>
+              <div>
+                <b-nav-item class="btn-route ml-2" @click="searchToggle($event)" v-if="type === 'home'">Find Ticket</b-nav-item>
+                <b-nav-item class="btn-route ml-2" to="/" v-else>Find Ticket</b-nav-item>
+              </div>
               <b-nav-item to="/mybooking" class="btn-route ml-2">My Booking</b-nav-item>
             </b-navbar-nav>
             <div>

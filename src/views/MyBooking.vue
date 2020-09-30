@@ -11,21 +11,24 @@
             <p class="text-primary font-weight-bold">Order History</p>
           </div>
         </div>
-        <div class="booking-history mt-4 p-3">
-          <p>Monday, 20 July ‘20 - 12:33</p>
+        <div class="booking-history mt-4 p-3" v-for="(item, index) in bookingHistory" :key="index">
+          <p>{{item.departureday}} - {{item.departuretime}}</p>
           <div class="route-way">
             <div class="from-title">
-              <p class="font-weight-bold">IDN</p>
+              <p class="font-weight-bold">{{item.fromcountry}}</p>
             </div>
             <img src="../assets/img/greysmallplane.png" alt="gray-small-plane">
             <div class="from-title">
-              <p class="font-weight-bold">JPN</p>
+              <p class="font-weight-bold">{{item.tocountry}}</p>
             </div>
           </div>
-          <p class="text-secondary name-airplane">Garuda Indonesia, AB-221</p>
+          <p class="text-secondary name-airplane">{{item.nameairlines}}, {{item.idflight}}</p>
           <div class="navigation-button mt-4">
             <p class="font-weight-bold text-secondary mr-2">status</p>
-            <p class="payment-status">waiting for payment</p>
+            <div style="margin-top: -6px;">
+              <p class="payment-status" v-if="item.status === 0">waiting for payment</p>
+              <p class="payment-status bg-success" v-else style="width: 140px;">E-ticket Issued</p>
+            </div>
             <p class="font-weight-bold text-primary">View Detail</p>
           </div>
         </div>
@@ -39,6 +42,7 @@
 import Navbar from '../component/Navbar'
 import CardUser from '../component/CardUser'
 import Footer from '../component/Footer'
+import { mapActions, mapGetters } from 'vuex'
 
 export default {
   name: 'MyBooking',
@@ -46,6 +50,24 @@ export default {
     Navbar,
     CardUser,
     Footer
+  },
+  computed: {
+    ...mapGetters({
+      bookingHistory: 'booking/getBookingHistory'
+    })
+  },
+  data () {
+    return {
+      userid: localStorage.getItem('iduser')
+    }
+  },
+  methods: {
+    ...mapActions({
+      getBooking: 'booking/getBookingData'
+    })
+  },
+  mounted () {
+    this.getBooking(this.userid)
   }
 }
 </script>
@@ -99,7 +121,6 @@ export default {
   width: 185px;
   padding: 7px 10px;
   border-radius: 10px;
-  margin-top: -6px;
 }
 .navigation-button {
   display: grid;

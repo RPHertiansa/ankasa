@@ -98,7 +98,7 @@ export default {
   data () {
     return {
       selectDate: '',
-      childTotal: '',
+      childTotal: 0,
       adultTotal: '',
       seatClass: '',
       flightType: '',
@@ -124,16 +124,27 @@ export default {
       }
       const search = {
         departure: !this.selectDate ? this.$swal('Plese fill departure field') : this.selectDate,
-        childPassengger: !this.childTotal ? this.$swal('Plese fill person field') : parseInt(this.childTotal),
-        adultPassengger: !this.adultTotal ? this.$swal('Plese fill person field') : parseInt(this.adultTotal),
+        childPassengger: parseInt(this.childTotal),
+        adultPassengger: !this.adultTotal ? this.$swal('Plese fill adult field') : parseInt(this.adultTotal),
         seatClass: !this.seatClass ? this.$swal('Choose one class seat') : this.seatClass,
         flightType: !this.flightType ? this.$swal('Choose one flight type') : this.flightType,
         locationFrom: countryfrom,
         locationTo: countryto,
         countryfrom: this.locationfrom.country,
-        countyto: this.locationto.country
+        countyto: this.locationto.country,
+        direct: '',
+        transit: '',
+        transit2: '',
+        luggage: '',
+        flightMeal: '',
+        wifi: '',
+        departureFrom: '00:00',
+        departureTo: '24:00',
+        timeArrivedFrom: '00:00',
+        timeArrivedTo: '24:00',
+        airlines: ''
       }
-      if (!this.selectDate || !this.childTotal || !this.adultTotal || !this.seatClass || !this.flightType || !countryto || !countryfrom) {
+      if (!this.selectDate || !this.adultTotal || !this.seatClass || !this.flightType || !countryto || !countryfrom) {
       } else {
         const searchData = JSON.stringify(search)
         localStorage.setItem('searchdata', searchData)
