@@ -11,24 +11,9 @@
           <template v-slot:img>
             <div class="row">
               <div class="outline">
-                <img src="../assets/img/paris.png" class="rounded-circle" />
-                <p>Paris</p>
-              </div>
-              <div class="outline">
-                <img src="../assets/img/bali.png" class="rounded-circle" />
-                <p>Bali</p>
-              </div>
-              <div class="outline">
-                <img src="../assets/img/singapore.png" class="rounded-circle" />
-                <p>Singapore</p>
-              </div>
-              <div class="outline">
-                <img src="../assets/img/agra.png" class="rounded-circle" />
-                <p>Agra</p>
-              </div>
-              <div class="outline">
-                <img src="../assets/img/sydney.png" class="rounded-circle" />
-                <p>Sydney</p>
+                <b-img :src="`http://localhost:3004/${getLocation.data.imglocation}`" class="rounded-circle" />
+                <p>{{ getLocation.data.city }}</p>
+                <p></p>
               </div>
             </div>
           </template>
@@ -65,6 +50,27 @@
   </div>
 </template>
 
+<script>
+import { mapGetters, mapActions } from 'vuex'
+
+export default {
+  name: 'Carousel',
+  computed: {
+    ...mapGetters({
+      getLocation: 'location/getLocation'
+    })
+  },
+  method: {
+    ...mapActions({
+      getAll: 'location/getLocation'
+    })
+  },
+  mounted () {
+    this.getAll()
+  }
+}
+
+</script>
 <style scoped>
 .container {
   margin: 3% auto;

@@ -31,6 +31,7 @@
 <style scoped src="../assets/css/style.css"></style>
 
 <script>
+import Swal from 'sweetalert2'
 import { mapActions } from 'vuex'
 
 export default {
@@ -61,7 +62,14 @@ export default {
       }
       this.onResetPassword(ukey).then(result => {
         window.location = '/login'
-      }).catch(err => alert(err))
+      }).catch(err => this.alertError(err))
+    },
+    alertError () {
+      Swal.fire({
+        icon: 'error',
+        title: 'Oops...',
+        text: 'Reset password Failed, Something went wrong!'
+      })
     }
   }
 }
