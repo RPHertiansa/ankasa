@@ -38,9 +38,9 @@
             </div>
             <div class="flight-time">
               <p>3 hours 11 minutes</p>
-              <div style="position: absolute;">
-                <p v-if="item.direct !== 0">(Direct)</p>
-                <p v-if="item.transit !== 0">(1 transit)</p>
+              <div>
+                <p v-if="item.direct !== 0 && item.transit === 0 && item.transit2 === 0">(Direct)</p>
+                <p v-if="item.transit !== 0 && item.transit2 === 0">(1 transit)</p>
                 <p v-if="item.transit2 !== 0" class="more-transit">(2+ transit)</p>
               </div>
             </div>
@@ -65,7 +65,6 @@
         </div>
       </div>
     </div>
-    <button @click="get">click</button>
     <Footer />
   </div>
 </template>
@@ -91,13 +90,10 @@ export default {
   methods: {
     ...mapActions({
       getFlightData: 'flight/findFlightData'
-    }),
-    get () {
-      console.log(this.dataFlight)
-    }
+    })
   },
   mounted () {
-    this.getFlightData()
+    // this.getFlightData()
   }
 }
 </script>
@@ -123,7 +119,6 @@ export default {
 }
 .flight-list {
   margin-left: 50px;
-  overflow: scroll;
 }
 .filter-select {
   display: grid;
@@ -195,7 +190,7 @@ export default {
     display: none;
   }
   .flight-list {
-    height: 1250px;
+    height: 100%;
     margin: 0;
   }
 }

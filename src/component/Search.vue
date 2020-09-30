@@ -69,7 +69,7 @@
           <label class="custom-control-label font-weight-light" for="customRadioInline3">First class</label>
         </div>
       </div>
-      <button class="btn btn-primary mt-4" @click="searchFlight()">Search Flight <img src="../assets/img/whitearrow.png" class="ml-5"></button>
+      <button class="btn btn-primary mt-4" style="width: 100%;" @click="searchFlight()">Search Flight <img src="../assets/img/whitearrow.png" class="ml-5"></button>
       <button class="btn btn-danger mt-2 close-search" @click="$emit('closesearch')">Cancel</button>
     </div>
   </div>
@@ -83,30 +83,43 @@ export default {
   props: ['locationfrom', 'locationto'],
   data () {
     return {
-      selectDate: null,
-      childTotal: null,
-      adultTotal: null,
-      seatClass: null,
-      flightType: null,
+      selectDate: '',
+      childTotal: '',
+      adultTotal: '',
+      seatClass: '',
+      flightType: '',
       oneWay: 'background-color: #f0f0f0;',
       roundtrip: 'background-color: #f0f0f0;'
     }
   },
   methods: {
     ...mapActions({
-      getDataLocation: 'location/getLocation'
+      getDataLocation: 'location/getLocation',
+      searchDataFlight: 'flight/searchFlightData'
     }),
     searchFlight () {
-      const search = {
-        departure: this.selectDate,
-        childPassengger: this.childTotal,
-        adultPassengger: this.adultTotal,
-        seatClass: this.seatClass,
-        flightType: this.flightType,
-        locationFrom: this.locationfrom,
-        locationTo: this.locationto
+      let countryfrom = ''
+      let countryto = ''
+      if (this.locationfrom.city === 'Select City' && this.locationto.city === 'Select City') {
+        this.$swal('Plese select destination')
+      } else {
+        countryfrom = this.locationfrom.city
+        countryto = this.locationto.city
       }
-      console.log(search)
+      const search = {
+        departure: !this.selectDate ? this.$swal('Plese fill departure field') : this.selectDate,
+        childPassengger: !this.childTotal ? this.$swal('Plese fill person field') : this.childTotal,
+        adultPassengger: !this.adultTotal ? this.$swal('Plese fill person field') : this.adultTotal,
+        seatClass: !this.seatClass ? this.$swal('Choose one class seat') : this.seatClass,
+        flightType: !this.flightType ? this.$swal('Choose one flight type') : this.flightType,
+        locationFrom: countryfrom,
+        locationTo: countryto
+      }
+      if (!this.selectDate || !this.childTotal || !this.adultTotal || !this.seatClass || !this.flightType || !countryto || !countryfrom) {
+      } else {
+        this.searchDataFlight(search)
+        this.$router.push('/flight')
+      }
     },
     setSeatClass (value) {
       this.seatClass = value

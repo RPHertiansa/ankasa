@@ -42,8 +42,8 @@ const routes = [
   {
     path: '/flight',
     name: 'Flight',
-    component: Flight
-    // meta: { requiresAuth: true }
+    component: Flight,
+    meta: { requiresAuth: true }
   },
   {
     path: '/user',
