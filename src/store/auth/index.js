@@ -56,6 +56,8 @@ const actions = {
       localStorage.removeItem('iduser')
       localStorage.removeItem('searchdata')
       localStorage.removeItem('username')
+      localStorage.removeItem('bookingdata')
+      localStorage.removeItem('bodetail')
       resolve()
     })
   },

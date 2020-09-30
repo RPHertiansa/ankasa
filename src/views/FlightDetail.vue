@@ -138,7 +138,7 @@ export default {
   },
   methods: {
     ...mapActions({
-      getDetail: 'user/getDetail',
+      userDetail: 'user/onDetail',
       location: 'location/getLocation',
       insertBooking: 'booking/insertBooking'
     }),
@@ -159,11 +159,14 @@ export default {
         nationality: this.nationality,
         insurance: this.travelInsurance
       }
-      this.insertBooking(dataBO)
+      this.insertBooking(dataBO).then(result => {
+        this.$swal(result)
+        window.location = '/mybooking'
+      })
     }
   },
   mounted () {
-    this.getDetail(this.id)
+    this.userDetail(this.id)
     this.location()
   }
 }

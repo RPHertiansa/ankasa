@@ -49,26 +49,26 @@ const routes = [
   {
     path: '/flightdetail',
     name: 'FlightDetail',
-    component: FlightDetail
-    // meta: { requiresAuth: true }
+    component: FlightDetail,
+    meta: { requiresAuth: true }
   },
   {
     path: '/user',
     name: 'User',
-    component: User
-    // meta: { requiresAuth: true }
+    component: User,
+    meta: { requiresAuth: true }
   },
   {
     path: '/mybooking',
     name: 'MyBooking',
-    component: MyBooking
-    // meta: { requiresAuth: true }
+    component: MyBooking,
+    meta: { requiresAuth: true }
   },
   {
     path: '/bookingdetail',
     name: 'BookingDetail',
-    component: BookingDetail
-    // meta: { requiresAuth: true }
+    component: BookingDetail,
+    meta: { requiresAuth: true }
   }
 ]
 

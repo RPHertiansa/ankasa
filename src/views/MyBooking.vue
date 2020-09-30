@@ -29,7 +29,7 @@
               <p class="payment-status" v-if="item.status === 0">waiting for payment</p>
               <p class="payment-status bg-success" v-else style="width: 140px;">E-ticket Issued</p>
             </div>
-            <p class="font-weight-bold text-primary">View Detail</p>
+            <p class="font-weight-bold text-primary" style="cursor: pointer;" @click="toDetail(item.idtransaction)">View Detail</p>
           </div>
         </div>
       </div>
@@ -53,7 +53,8 @@ export default {
   },
   computed: {
     ...mapGetters({
-      bookingHistory: 'booking/getBookingHistory'
+      bookingHistory: 'booking/getBookingHistory',
+      getBoDetail: 'booking/getBoDetail'
     })
   },
   data () {
@@ -63,8 +64,14 @@ export default {
   },
   methods: {
     ...mapActions({
-      getBooking: 'booking/getBookingData'
-    })
+      getBooking: 'booking/getBookingData',
+      bookingDetail: 'booking/getDetailBooking'
+    }),
+    toDetail (id) {
+      this.bookingDetail(id).then(() => {
+        window.location = '/bookingdetail'
+      })
+    }
   },
   mounted () {
     this.getBooking(this.userid)

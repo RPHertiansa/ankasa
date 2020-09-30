@@ -19,28 +19,28 @@
             <div class="booking-left col-sm-6">
               <b-row>
                 <b-col>
-                  <img src="../assets/img/garuda.png" alt="logo garuda">
+                  <img :src="`http://localhost:3004/${bodetail.imgairlines}`" alt="logo garuda">
                 </b-col>
                 <b-col>
-                  <b class="departure font-weight-bold mr-2"> IDN </b>
+                  <b class="departure font-weight-bold mr-2"> {{bodetail.fromcountry}} </b>
                   <img src="../assets/img/greysmallplane.png" alt="gray-small-plane"/>
-                  <b class="departure font-weight-bold ml-2"> JPN </b>
+                  <b class="departure font-weight-bold ml-2"> {{bodetail.tocountry}} </b>
                 </b-col>
               </b-row>
               <b-row>
                 <b-col>
                   <b class="small text-muted">Code</b>
-                  <p class="small">AB-221</p>
+                  <p class="small">{{bodetail.idflight}}</p>
                 </b-col>
                 <b-col>
                   <b class="small text-muted">Class</b>
-                  <p class="small">Economy</p>
+                  <p class="small">{{bodetail.class}}</p>
                 </b-col>
               </b-row>
               <b-row>
                 <b-col>
                   <b class="small text-muted">Terminal</b>
-                  <p class="small">A</p>
+                  <p class="small">{{bodetail.terminal}}</p>
                 </b-col>
                 <b-col>
                   <b class="small text-muted">Class</b>
@@ -48,7 +48,7 @@
                 </b-col>
               </b-row>
               <p class="small text-muted">Departure</p>
-              <p class="small">Monday, 20 July '20 - 12:33</p>
+              <p class="small">{{bodetail.departureday}} - {{bodetail.departuretime}}</p>
             </div>
             <div class="booking-right col-sm-4">
               <img src="../assets/img/qr.png" alt="qr code">
@@ -69,6 +69,11 @@ export default {
   components: {
     Navbar,
     Footer
+  },
+  data () {
+    return {
+      bodetail: JSON.parse(localStorage.getItem('bodetail'))
+    }
   }
 }
 </script>
