@@ -20,9 +20,34 @@
           </div>
         </div>
       </div>
-      <!--<img src="https://source.unsplash.com/random/201x201" alt="">
-      <img src="https://source.unsplash.com/random/202x202" alt="">
-      <img src="https://source.unsplash.com/random/203x203" alt=""> -->
+      <div class="card">
+        <div class="top-card mt-3 ml-3">
+          <p class="ml-3 mt-1"><b>15</b> Airlines</p>
+        </div>
+        <div class="row city">
+          <div class="col-sm-8">
+            <p>Tokyo,</p>
+            <h4 h4>Japan</h4>
+          </div>
+          <div class="col-sm-2 btn-right">
+            <img src="../assets/img/btnback.png">
+          </div>
+        </div>
+      </div>
+      <div class="card">
+        <div class="top-card mt-3 ml-3">
+          <p class="ml-3 mt-1"><b>15</b> Airlines</p>
+        </div>
+        <div class="row city">
+          <div class="col-sm-8">
+            <p>Tokyo,</p>
+            <h4 h4>Japan</h4>
+          </div>
+          <div class="col-sm-2 btn-right">
+            <img src="../assets/img/btnback.png">
+          </div>
+        </div>
+      </div>
       <div class="card">
         <div class="top-card mt-3 ml-3">
           <p class="ml-3 mt-1"><b>15</b> Airlines</p>

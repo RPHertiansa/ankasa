@@ -4,11 +4,11 @@
     <div class="container">
       <b-row>
         <b-col><CardUser /></b-col>
-        <b-col cols="8">
+        <b-col>
           <div class="profile mt-3 p-4">
             <p class="sub">PROFILE</p>
             <h3>Profile</h3>
-            <form @click.prevent="update">
+            <form @submit.prevent="update">
               <div class="row mt-4">
                 <div class="col-sm-6">
                   <p>Contact</p>
@@ -23,7 +23,7 @@
                   <label class="text-muted">Username</label>
                   <input type="text" class="form-control mb-4" v-model="detailUser.username"/>
                   <label class="text-muted">City</label>
-                  <b-form-select v-model="detailUser.city">
+                  <b-form-select v-model="detailUser.idlocation">
                     <b-form-select-option disabled value="null">Select Category</b-form-select-option>
                     <b-form-select-option v-for="(item, index) in allLocation" :key="index" :value="item.idlocation"> {{ item.city }} </b-form-select-option>
                   </b-form-select>
@@ -31,7 +31,6 @@
                   <input type="text" class="form-control mb-4" v-model="detailUser.address"/>
                   <label class="text-muted">Post Code</label>
                   <input type="text" class="form-control mb-4" v-model="detailUser.postcode" disabled/>
-                  <input type="text" class="form-control mb-4" v-model="detailUser.idlocation" disabled/>
                   <button type="submit" class="btn btn-save">Save</button>
                 </div>
               </div>
@@ -44,6 +43,7 @@
 </template>
 
 <script>
+import Swal from 'sweetalert2'
 import Navbar from '../component/Navbar'
 import CardUser from '../component/CardUser'
 import { mapGetters, mapActions } from 'vuex'
@@ -73,21 +73,31 @@ export default {
       updateLocation: 'location/updateLocation'
     }),
     update () {
-      const fd = new FormData()
-      fd.append('email', this.detailUser.email)
-      fd.append('username', this.detailUser.username)
-      fd.append('phonenumber', this.detailUser.phonenumber)
-      fd.append('address', this.detailUser.address)
-      fd.append('idlocation', this.detailUser.city)
       const data = {
         id: this.id,
-        form: fd
+        email: this.detailUser.email,
+        username: this.detailUser.username,
+        phonenumber: this.detailUser.phonenumber,
+        address: this.detailUser.address,
+        idlocation: this.detailUser.idlocation
       }
 
       this.onUpdate(data).then((response) => {
-        console.log(response)
-      }).catch((err) => {
-        console.log(err)
+        this.alertSuccess(response)
+        window.location = '/user'
+      }).catch((err) => this.alertError(err))
+    },
+    alertSuccess () {
+      Swal.fire({
+        icon: 'success',
+        title: 'Your Personal Info Updated'
+      })
+    },
+    alertError () {
+      Swal.fire({
+        icon: 'error',
+        title: 'Oops...',
+        text: 'Something went wrong!'
       })
     }
   },
@@ -140,7 +150,7 @@ input[type="password"]:focus, select:focus {
 }
 @media(max-width: 768px) {
   .profile {
-    width: 500px;
+    width: 1000px;
     height: 100%;
     margin-bottom: 15px;
   }
