@@ -2,6 +2,7 @@
   <div v-if="type === 'flight-detail'">
     <div class="header">
       <img src="../assets/img/plane.png" alt="blue-plane" />
+      <p class="font-weight-bold text-white text-right sub-title d-none d-md-block">View Details</p>
     </div>
   </div>
   <div v-else>
