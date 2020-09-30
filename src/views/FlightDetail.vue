@@ -32,17 +32,17 @@
         <div class="info-flight">
           <img src="../assets/img/garuda.png" alt="logo-garuda" />
           <b class="text-muted ml-5">Garuda Indonesia</b>
-          <div class="route-way">
+          <div class="route-way-detail">
             <div class="from-title">
-              <p class="font-weight-bold">Medan (IDN)</p>
+              <p class="font-weight-bold">{{searchData.locationFrom}} ({{searchData.countryfrom}})</p>
             </div>
             <img src="../assets/img/greysmallplane.png" alt="gray-small-plane"/>
             <div class="from-title">
-              <p class="font-weight-bold">Tokyo (JPN)</p>
+              <p class="font-weight-bold">{{searchData.locationTo}} ({{searchData.countyto}})</p>
             </div>
           </div>
             <p class="small text-muted">
-              Sunday, 15 Agustus 2020 > 12:33 - 15:21</p>
+              {{searchData.departure}} > 12:33 - 15:21</p>
             <p class="text-primary">
               <b-icon-check-circle></b-icon-check-circle> Refundable
             </p>
@@ -52,7 +52,7 @@
           <hr>
           <b-row>
             <b-col><p class="font-weight-bold"> Total Payment </p></b-col>
-            <b-col><b class="text-primary right">$ 145,00</b></b-col>
+            <b-col><b class="text-primary right">$ {{bookingData.price * (searchData.adultPassengger + searchData.childPassengger)}},00</b></b-col>
           </b-row>
         </div>
       </div>
@@ -103,7 +103,7 @@
       </div>
       <div class="col-sm-4"></div>
     </div>
-    <button type="submit" class="btn btn-login mt-4"> Proceed to payment</button>
+    <button type="submit" class="btn btn-login mt-4" @click.prevent="booking"> Proceed to payment</button>
   </form>
     <Footer />
   </div>
@@ -120,6 +120,24 @@ export default {
     Navbar,
     Header,
     Footer
+  },
+  data () {
+    return {
+      bookingData: JSON.parse(localStorage.getItem('bookingdata')),
+      searchData: JSON.parse(localStorage.getItem('searchdata'))
+    }
+  },
+  methods: {
+    booking () {
+      const dataBO = {
+        iduser: this.bookingData.iduser,
+        idflight: this.bookingData.idflight,
+        child: this.bookingData.childPassengger,
+        adult: this.bookingData.adultPassengger,
+        price: this.bookingData.price * (this.bookingData.childPassengger + this.bookingData.adultPassengger)
+      }
+      console.log(dataBO)
+    }
   }
 }
 </script>
@@ -127,6 +145,7 @@ export default {
 <style scoped>
 .flight-detail {
   background-color: #F5F6FA;
+  overflow-x: hidden;
 }
 .info-panel {
   box-shadow: 0 3px 20px rgba(0, 0, 0, 0.5);
@@ -163,14 +182,18 @@ select:focus {
   background-color: #fff;
   padding: 30px;
   height: 400px;
+  overflow: unset;
 }
-.route-way {
+.route-way-detail {
   display: flex;
-  width: 60%;
+  width: 85%;
   justify-content: space-between;
   align-items: center;
   font-size: 18px;
   margin: 25px 0 10px 0;
+}
+.route-way-detail img {
+  margin-top: -15px;
 }
 .btn-login {
   color: #fff;
@@ -189,11 +212,11 @@ select:focus {
     margin-top: 10px;
     height: 520px;
   }
+  .route-way-detail {
+    width: 100%;
+  }
 }
 @media(max-width: 576px) {
-  .flight-detail {
-    overflow-x: hidden;
-  }
   .row {
     margin: auto;
   }
@@ -208,7 +231,7 @@ select:focus {
     color: rgb(75, 69, 69);
   }
   .btn-login {
-    width: 50%;
+    width: 40%;
   }
 }
 </style>

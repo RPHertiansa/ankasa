@@ -238,6 +238,7 @@ export default {
   background-color: transparent;
   color: rgb(63, 63, 63);
   padding: 0 5px;
+  font-size: 20px !important;
 }
 .route button:hover {
   color: #2395ff;
