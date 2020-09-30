@@ -20,7 +20,7 @@ const mutations = {
 const actions = {
   getLocation (context, payload) {
     return new Promise((resolve, reject) => {
-      axios.get('http://127.0.0.1:3004/api/v1/location/getall').then(result => {
+      axios.get('http://localhost:3004/api/v1/location/getall').then(result => {
         context.commit('SET_LOCATION', result.data.data)
       }).catch(err => {
         reject(err)

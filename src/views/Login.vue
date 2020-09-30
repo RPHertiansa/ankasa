@@ -16,7 +16,7 @@
           <form class="text-center" @submit.prevent="login">
             <input type="text" class="form-control mb-4" placeholder="Username" autofocus required v-model="form.loginUname" />
             <input type="password" class="form-control mb-5" placeholder="Password" required v-model="form.loginPass"/>
-            <button type="submit" class="btn btn-block btn-login">Sign In</button>
+            <button type="submit" class="btn btn-block btn-login" >Sign In</button>
             <p class="small text-muted mt-3 mb-3">
               Did you forget your password? <br />
               <a class="text-primary" data-toggle="modal" data-target="#forgot-pass">Tap here for reset</a>
@@ -44,6 +44,7 @@
 <style scoped src="../assets/css/style.css"></style>
 
 <script>
+import Swal from 'sweetalert2'
 import { mapActions } from 'vuex'
 import ModalForgot from '../component/ModalForgot'
 
@@ -67,21 +68,48 @@ export default {
     login () {
       this.onLogin(this.form).then(result => {
         if (result === "Cannot read property 'password' of undefined") {
-          alert('Username Doesnt Exist!')
+          this.alertExist()
           localStorage.removeItem('token')
           localStorage.removeItem('refreshToken')
         } else if (result === 'Need Activation') {
-          alert('This Account need to verified, check your email account')
+          this.alertActivate()
           localStorage.removeItem('token')
           localStorage.removeItem('refreshToken')
         } else if (result === 'Incorrect password! Please try again') {
-          alert('Username and Password Doesnt Match!')
+          this.alertMatch()
           localStorage.removeItem('token')
           localStorage.removeItem('refreshToken')
         } else {
           window.location = '/'
         }
-      }).catch(err => alert(`Login Failed! ${err.message}`))
+      }).catch(err => this.alertError(err.message))
+    },
+    alertExist () {
+      Swal.fire({
+        icon: 'error',
+        title: 'Username Doesnt Exist!',
+        text: 'Please check your personal info or create a new one'
+      })
+    },
+    alertActivate () {
+      Swal.fire({
+        icon: 'warning',
+        title: 'This Account need to verified!',
+        text: 'Please check your email account to activate'
+      })
+    },
+    alertMatch () {
+      Swal.fire({
+        icon: 'question',
+        title: 'Username and Password Doesnt Match!'
+      })
+    },
+    alertError () {
+      Swal.fire({
+        icon: 'error',
+        title: 'Oops...',
+        text: 'Something went wrong!'
+      })
     }
   }
 }

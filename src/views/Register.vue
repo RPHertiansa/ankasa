@@ -34,6 +34,7 @@
 <style scoped src="../assets/css/style.css"></style>
 
 <script>
+import Swal from 'sweetalert2'
 import { mapActions } from 'vuex'
 
 export default {
@@ -56,9 +57,23 @@ export default {
         password: this.registerPass
       }
       this.onRegister(data).then(result => {
-        alert(result)
+        this.alertActivate()
         window.location = '/login'
-      }).catch(err => alert(err))
+      }).catch(err => this.alertError(err))
+    },
+    alertActivate () {
+      Swal.fire(
+        'Your Registration Success',
+        'Please Check Your Email to activate',
+        'success'
+      )
+    },
+    alertError () {
+      Swal.fire({
+        icon: 'error',
+        title: 'Oops...',
+        text: 'Something went wrong!'
+      })
     }
   }
 }

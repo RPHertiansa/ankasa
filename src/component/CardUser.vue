@@ -1,26 +1,28 @@
 <template>
-  <div class="container mt-3">
-    <b-card class="card-left">
-      <b-card-text class="text-center">
-        <div class="user-profile"><img src="../assets/img/bigProfile.png" alt="profile" class="rounded-circle"></div>
+  <div class="card-main mt-3">
+    <div class="sub-card m-4">
+      <div class="text-center">
+        <div class="user-profile"><img src="../assets/img/bigProfile.png" alt="profile" class="rounded-circle mt-4"></div>
         <b-button variant="outline-info" class="btn-photo d-none d-sm-block btn-sm">Select Photo</b-button>
         <h5>Mike Kowalski</h5>
         <p class="small text-muted">Medan, Indonesia</p>
-      </b-card-text>
-      <div>
-        <p><b>Card</b> <label class="text-info">+ Add</label></p>
-        <b-card class="mini-card">
+      </div>
+        <b-row>
+            <b-col><b>Card</b></b-col>
+            <b-col><p class="text-info text-right">+ Add</p></b-col>
+          </b-row>
+        <div class="mini-card">
           <b>4441 1235 5512 5551</b>
           <b-row>
-            <b-col align-self="start"><p>X Card</p></b-col>
-            <b-col align-self="end"><p>$ 1,440.2</p></b-col>
+            <b-col><p>X Card</p></b-col>
+            <b-col><p class="text-right">$ 1,440.2</p></b-col>
           </b-row>
-        </b-card>
+        </div>
 
         <div class="menu">
           <ul>
             <li class="text-primary">
-              <router-link to="/mybooking"> <b-icon-person-circle class="mr-3"></b-icon-person-circle> Profile
+              <router-link to="/user"> <b-icon-person-circle class="mr-3"></b-icon-person-circle> Profile
               </router-link>
             </li>
             <li> <b-icon-star-fill class="text-secondary mr-3"></b-icon-star-fill> My Review</li>
@@ -28,8 +30,7 @@
             <li class="text-danger" @click="logout()"> <b-icon-box-arrow-right class="mr-3"></b-icon-box-arrow-right>Logout</li>
           </ul>
         </div>
-      </div>
-    </b-card>
+    </div>
   </div>
 </template>
 
@@ -50,26 +51,27 @@ export default {
 </script>
 
 <style scoped>
-.card-left {
+.card-main {
   background-color: #fff;
   border-radius: 15px;
   width: 300px;
-  height: 610px;
-  margin-bottom: 15px;
+  height: 100%;
+  margin: auto;
 }
 .user-profile img{
   width: 30%;
   height: 30%;
-  border: 3px solid #2395FF;
+  border: 4px solid #2395FF;
+  padding: 5px;
 }
 .btn-photo {
   border-radius: 10px;
   font-weight: bold;
-  padding: 6px;
+  padding: 8px;
   margin: 20px auto;
 }
 h5 {
-  font-weight: bold;
+  font-weight: bolder;
 }
 p {
   font-size: 12px;
@@ -79,9 +81,10 @@ p {
   color: #fff;
   box-shadow: 0px 8px 25px rgba(35, 149, 255, 0.49);
   border-radius: 10px;
+  padding: 15px;
 }
 .mini-card b {
-  letter-spacing: 1.5px;
+  letter-spacing: 2.3px;
 }
 .mini-card p {
   color: #AEFAFF;
@@ -92,16 +95,18 @@ p {
   font-weight: bold;
   cursor: pointer;
 }
+@media (max-width: 768px) {
+
+}
 @media (max-width: 576px) {
-  .card-left {
-    width: 250px;
-    height: 550px;
-    /* display: flex;
-    align-items: center;
-    justify-content: center; */
+  .card-main {
+    width: 400px;
+  }
+  .user-profile img {
+    margin-bottom: 15px;
   }
   .mini-card b {
-    letter-spacing: 0.5px;
+    letter-spacing: 4px;
   }
 }
 </style>

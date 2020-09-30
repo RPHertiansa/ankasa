@@ -24,6 +24,7 @@
 </template>
 
 <script>
+import Swal from 'sweetalert2'
 import { mapActions } from 'vuex'
 
 export default {
@@ -42,9 +43,23 @@ export default {
         email: this.forgotEmail
       }
       this.onForgotPassword(data).then(result => {
-        alert(result)
+        this.alertActivate(result)
         location.reload()
-      }).catch(err => alert(`Send Email Failed!, ${err.message}`))
+      }).catch(err => this.alertError(err.message))
+    },
+    alertActivate () {
+      Swal.fire(
+        'Check your email',
+        'Please Check Your Email to reset password',
+        'success'
+      )
+    },
+    alertError () {
+      Swal.fire({
+        icon: 'error',
+        title: 'Oops...',
+        text: 'Send Email Failed!'
+      })
     }
   }
 }
