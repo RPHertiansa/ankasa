@@ -19,7 +19,7 @@
             <div class="booking-left col-sm-6">
               <b-row>
                 <b-col>
-                  <img :src="`http://localhost:3004/${bodetail.imgairlines}`" alt="logo garuda">
+                  <img :src="`http://54.164.193.160:3000/${bodetail.imgairlines}`" alt="logo garuda">
                 </b-col>
                 <b-col>
                   <b class="departure font-weight-bold mr-2"> {{bodetail.fromcountry}} </b>

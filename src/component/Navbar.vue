@@ -30,7 +30,7 @@
               <div v-else class="navbar-profile">
                 <img src="../assets/img/message.png" alt="message" class="button-notifmsg">
                 <img src="../assets/img/bell.png" alt="bell" class="button-notifmsg">
-                <div class="user-profile"><router-link to="/user"><img :src="`http://localhost:3004/${detailUser.image}`" alt="profile"></router-link></div>
+                <div class="user-profile"><router-link to="/user"><img :src="`http://54.164.193.160:3000/${detailUser.image}`" alt="profile"></router-link></div>
               </div>
             </div>
           </b-collapse>
@@ -41,6 +41,7 @@
 
 <script>
 import { mapGetters, mapActions } from 'vuex'
+// import { img } from '../helper/env'
 
 export default {
   name: 'Navbar',

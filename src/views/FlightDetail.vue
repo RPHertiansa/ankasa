@@ -28,7 +28,7 @@
           Flight Details
         </h4>
         <div class="info-flight">
-          <img :src="`http://localhost:3004/${bookingData.imgplane}`" alt="logo-garuda" />
+          <img :src="`http://54.164.193.160:3000/${bookingData.imgplane}`" alt="logo-garuda" />
           <b class="text-muted ml-5">{{bookingData.nameplane}}</b>
           <div class="route-way-detail">
             <div class="from-title">

@@ -77,23 +77,23 @@
 </template>
 
 <script>
-import { mapGetters, mapActions } from 'vuex'
+// import { mapGetters, mapActions } from 'vuex'
 
 export default {
-  name: 'Carousel',
-  computed: {
-    ...mapGetters({
-      getLocation: 'location/getLocation'
-    })
-  },
-  method: {
-    ...mapActions({
-      getAll: 'location/getLocation'
-    })
-  },
-  mounted () {
-    this.getAll()
-  }
+  name: 'Carousel'
+  // computed: {
+  //   ...mapGetters({
+  //     getLocation: 'location/getLocation'
+  //   })
+  // },
+  // method: {
+  //   ...mapActions({
+  //     getCity: 'location/getLocation'
+  //   })
+  // },
+  // mounted () {
+  //   this.getCity()
+  // }
 }
 
 </script>

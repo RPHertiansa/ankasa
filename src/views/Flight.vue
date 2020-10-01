@@ -97,7 +97,7 @@
         </div>
         <div class="flight-box p-3 mb-4" v-for="(item, index) in dataFlight" :key="index">
           <div class="plane-brand">
-            <img :src="`http://localhost:3004/${item.imgairlines}`" alt="brand" class="garuda">
+            <img :src="`http://54.164.193.160:3000/${item.imgairlines}`" alt="brand" class="garuda">
             <p class="ml-4 mt-2">{{item.nameairlines}}</p>
           </div>
           <div class="plane-detail">

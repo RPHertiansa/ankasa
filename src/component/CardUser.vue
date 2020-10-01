@@ -3,7 +3,7 @@
     <div class="sub-card m-4">
       <form enctype="multipart/form-data" @change.prevent="update">
         <div class="text-center">
-        <div class="user-profile"><img :src="`http://localhost:3004/${detailUser.image}`" alt="profile" class="rounded-circle mt-4"></div>
+        <div class="user-profile"><img :src="`http://54.164.193.160:3000/${detailUser.image}`" alt="profile" class="rounded-circle mt-4"></div>
         <label class="custom-file-upload">
           <input type="file" @change="upload($event)"/>
           Select Photo

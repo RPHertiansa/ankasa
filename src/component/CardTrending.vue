@@ -66,6 +66,27 @@
   </div>
 </template>
 
+<script>
+// import { mapGetters, mapActions } from 'vuex'
+
+export default {
+  name: 'CardTrending'
+  // computed: {
+  //   ...mapGetters({
+  //     getLocation: 'location/getLocation'
+  //   })
+  // },
+  // method: {
+  //   ...mapActions({
+  //     getCity: 'location/getLocation'
+  //   })
+  // },
+  // mounted () {
+  //   this.getCity()
+  // }
+}
+
+</script>
 <style scoped>
 .container {
   display: grid;

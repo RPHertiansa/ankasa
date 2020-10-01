@@ -1,4 +1,5 @@
 import axios from 'axios'
+import { url } from '../../helper/env'
 
 const state = () => {
   return {
@@ -20,7 +21,7 @@ const mutations = {
 const actions = {
   getLocation (context, payload) {
     return new Promise((resolve, reject) => {
-      axios.get('http://localhost:3004/api/v1/location/getall').then(result => {
+      axios.get(`${url}/location/getall`).then(result => {
         context.commit('SET_LOCATION', result.data.data)
       }).catch(err => {
         reject(err)
