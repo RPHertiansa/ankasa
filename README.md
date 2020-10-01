@@ -22,3 +22,11 @@ This app has a registration page for new user, booking page, and booking detail.
 ![search](https://user-images.githubusercontent.com/47838819/94762336-9652f780-03d1-11eb-9ff9-5cf80846a330.PNG)
 ### User Profile Page
 ![user](https://user-images.githubusercontent.com/47838819/94762349-9bb04200-03d1-11eb-872a-2cc873b905dd.PNG)
+### FLight Page
+![WhatsApp Image 2020-10-01 at 10 56 32 AM](https://user-images.githubusercontent.com/47838819/94765504-61e13a80-03d5-11eb-9e6f-c33780d7eafa.jpeg)
+### Detail Flight Page
+![WhatsApp Image 2020-10-01 at 10 58 05 AM (1)](https://user-images.githubusercontent.com/47838819/94765383-57bf3c00-03d5-11eb-8722-85d414669093.jpeg)
+### Booking Flight Page
+![WhatsApp Image 2020-10-01 at 10 56 33 AM](https://user-images.githubusercontent.com/47838819/94765486-60177700-03d5-11eb-9f30-37909227dbaa.jpeg)
+### Detail Booking Page
+![WhatsApp Image 2020-10-01 at 10 58 05 AM](https://user-images.githubusercontent.com/47838819/94765453-5d1c8680-03d5-11eb-8856-a8238522643a.jpeg)
