@@ -1,24 +1,7 @@
-# ankasa
+# Ankasa Ticketing App
 
-## Project setup
-```
-npm install
-```
+Is an application made for ticket booking. This app is built using VueJs as Javascript Framework. It has basic CRUD function, responsive display, and interactive user experience. 
 
-### Compiles and hot-reloads for development
-```
-npm run serve
-```
+This app has a registration page for new user, booking page, and booking detail. Booking steps in this app is simple.
 
-### Compiles and minifies for production
-```
-npm run build
-```
 
-### Lints and fixes files
-```
-npm run lint
-```
-
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).
